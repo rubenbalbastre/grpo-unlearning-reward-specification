@@ -3,518 +3,577 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+  <meta name="title" content="An Empirical Study of Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning">
+  <meta name="description" content="A project page for a controlled study of reward specification, RWKU reliability, and behavioral endpoints in GRPO-based LLM unlearning.">
+  <meta name="keywords" content="LLM unlearning, GRPO, reward specification, RLVR, RWKU, benchmark reliability, LoRA, language models">
+  <meta name="author" content="Ruben Balbastre, Juan Manuel Orduna, Mariano Perez">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
+
   <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="og:site_name" content="University of Valencia">
+  <meta property="og:title" content="Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning">
+  <meta property="og:description" content="A controlled empirical study showing that reward optimization, RWKU forget scores, held-out behavior, and training dynamics can disagree.">
+  <meta property="og:image" content="static/images/reward-specification-overview.svg">
+  <meta property="og:image:alt" content="Overview of the GRPO-based LLM unlearning study">
+  <meta property="article:published_time" content="2026-08-01T00:00:00.000Z">
   <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <meta property="article:tag" content="LLM unlearning">
+  <meta property="article:tag" content="GRPO">
+  <meta property="article:tag" content="reward specification">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta name="twitter:title" content="Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning">
+  <meta name="twitter:description" content="A controlled empirical study of reward hacking, RWKU reliability, and policy-support limits in GRPO-based LLM unlearning.">
+  <meta name="twitter:image" content="static/images/reward-specification-overview.svg">
+  <meta name="twitter:image:alt" content="Overview of the GRPO-based LLM unlearning study">
 
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
+  <meta name="citation_title" content="An Empirical Study of Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning">
+  <meta name="citation_author" content="Balbastre, Ruben">
+  <meta name="citation_author" content="Orduna, Juan Manuel">
+  <meta name="citation_author" content="Perez, Mariano">
+  <meta name="citation_publication_date" content="2026/08">
+  <meta name="citation_pdf_url" content="static/pdfs/paper.pdf">
+
+  <meta name="theme-color" content="#0f766e">
+  <title>GRPO-based LLM Unlearning | Reward Specification Study</title>
+
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
+  <link rel="stylesheet" href="static/css/index.css">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "headline": "An Empirical Study of Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning",
+    "description": "A controlled empirical study of reward specification, RWKU benchmark reliability, and behavioral endpoints in GRPO-based LLM unlearning.",
     "author": [
       {
         "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
+        "name": "Ruben Balbastre",
         "affiliation": {
           "@type": "Organization",
-          "name": "INSTITUTION_NAME"
+          "name": "University of Valencia"
         }
       },
       {
         "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
+        "name": "Juan Manuel Orduna",
         "affiliation": {
           "@type": "Organization",
-          "name": "INSTITUTION_NAME"
+          "name": "University of Valencia"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Mariano Perez",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "University of Valencia"
         }
       }
     ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
+    "datePublished": "2026-08",
     "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
+    "keywords": ["LLM unlearning", "GRPO", "reward specification", "RWKU", "RLVR", "benchmark reliability"]
   }
   </script>
 </head>
+
 <body>
-
-
-  <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
+    Top
   </button>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+    <section class="hero project-hero">
+      <div class="hero-body">
+        <div class="container is-max-widescreen">
+          <div class="columns is-vcentered is-variable is-8">
+            <div class="column is-7">
+              <p class="eyebrow">GRPO-based LLM unlearning</p>
+              <h1 class="title publication-title">
+                An Empirical Study of Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning
+              </h1>
+              <p class="subtitle publication-subtitle">
+                Reward success, RWKU forget scores, held-out behavior, and training dynamics do not always tell the same story.
+              </p>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+              <div class="publication-authors">
+                <span class="author-block">Ruben Balbastre</span>
+                <span class="author-separator">/</span>
+                <span class="author-block">Juan Manuel Orduna</span>
+                <span class="author-separator">/</span>
+                <span class="author-block">Mariano Perez</span>
+              </div>
+              <p class="publication-venue">University of Valencia - August 2026</p>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
+              <div class="publication-links">
+                <a href="static/pdfs/paper.pdf" target="_blank" class="button primary-action">
+                  <span>Paper</span>
                 </a>
-              </span>
+                <a href="https://github.com/rubenbalbastre/machine-unlearning-llm" target="_blank" class="button secondary-action">
+                  <span>Code</span>
+                </a>
+                <a href="https://github.com/rubenbalbastre/machine-unlearning-paper" target="_blank" class="button secondary-action" aria-label="Paper source repository">
+                  <span>Paper Source</span>
+                </a>
+                <a href="https://wandb.ai/ruben-balbastre-uv/machine-unlearning-llm/reports/GRPO-Unlearning--VmlldzoxNzcwMTI0NA" target="_blank" class="button secondary-action" aria-label="Weights and Biases report">
+                  <span>W&amp;B Report</span>
+                </a>
+                <a href="https://huggingface.co/collections/rubenbalbastre/grpo-based-llm-unlearning-reward-specification-and-benchmark" target="_blank" class="button secondary-action" aria-label="Hugging Face collection">
+                  <span>Hugging Face</span>
+                </a>
+                <a href="#BibTeX" class="button secondary-action">
+                  <span>BibTeX</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="column is-5">
+              <figure class="hero-figure">
+                <img src="static/images/reward-specification-overview.svg" alt="Pipeline overview for GRPO reward specification and evaluation">
+              </figure>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
+    <section class="section tldr-section">
+      <div class="container is-max-desktop">
+        <div class="tldr-panel">
+          <h2>TL;DR</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Getting a good unlearning score does not mean the model learned the behavior we wanted. Sometimes it forgets by refusing, sometimes it still leaks, and sometimes it finds weird ways to satisfy the reward. SFT warm-up helps larger models learn at all, but the reward still decides what kind of behavior they learn.
           </p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    </section>
 
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="section-title">Abstract</h2>
+        <div class="content research-copy">
+          <p>
+            Practical LLM unlearning is usually evaluated through two objectives: suppress target-specific knowledge and preserve non-target utility. In generative QA, this leaves a third behavior underspecified: when a target-adjacent prompt admits a safe broader answer, the model should answer at that level rather than leak, evade, or refuse.
+          </p>
+          <p>
+            We study this specification problem in a controlled LoRA-GRPO RWKU setting, comparing four reward designs that span lexical suppression, anti-refusal shaping, rubric-based broad answering, and an explicit refusal contrast, with and without SFT warm-up. The experiments show that optimization success is not equivalent to behavioral unlearning: RWKU forget scores, held-out behavioral audits, reward curves, and KL dynamics can point to different conclusions.
+          </p>
+          <p>
+            We trace these disagreements to reward-hacking endpoints, policy-support limits in GRPO, and benchmark probes that miss endpoint changes. Qualitative audits show safe broad-topic answering under R2; dedicated held-out measurement of that endpoint is ongoing.
+          </p>
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+    </section>
 
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <section class="section muted-section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Study Design</h2>
+        <div class="columns is-variable is-6">
+          <div class="column">
+            <article class="info-panel">
+              <p class="panel-kicker">Question</p>
+              <h3>What should an unlearned model do?</h3>
+              <p>
+                The target behavior is not just low leakage. For target-adjacent prompts, the model should avoid target-specific facts while still answering usefully at a broader topic level when possible.
+              </p>
+            </article>
+          </div>
+          <div class="column">
+            <article class="info-panel">
+              <p class="panel-kicker">Setup</p>
+              <h3>Controlled GRPO comparisons</h3>
+              <p>
+                The study holds the model family, data source, LoRA training pipeline, prompt splits, optimizer budget, and evaluation protocol as fixed as possible while changing reward specification and initialization.
+              </p>
+            </article>
+          </div>
+          <div class="column">
+            <article class="info-panel">
+              <p class="panel-kicker">Evaluation</p>
+              <h3>Benchmark plus behavioral audit</h3>
+              <p>
+                RWKU metrics are interpreted alongside held-out lexical leakage, semantic leakage, prompt helpfulness, refusal, language drift, reward curves, active-group rates, and KL dynamics.
+              </p>
+            </article>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
+    </section>
 
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
+    <section class="section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Reward Specifications</h2>
+        <div class="table-container reward-table-wrap">
+          <table class="table is-fullwidth reward-table">
+            <thead>
+              <tr>
+                <th>Reward</th>
+                <th>Intended endpoint</th>
+                <th>Specification</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="reward-tag r0">R0</span></td>
+                <td>Suppress configured target patterns</td>
+                <td>Lexical suppression baseline; relies on base-model behavior and KL regularization for usefulness.</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td><span class="reward-tag r1">R1</span></td>
+                <td>Suppress leakage without simple refusal</td>
+                <td>Adds explicit anti-refusal pressure to the R0 lexical leakage signal.</td>
+                <td>Low-medium</td>
+              </tr>
+              <tr>
+                <td><span class="reward-tag r2">R2</span></td>
+                <td>Answer at a safe broader-topic level</td>
+                <td>Uses a refusal-prefiltered rubric judge to prefer useful nearby-topic completions without target-specific leakage.</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><span class="reward-tag r4">R4</span></td>
+                <td>Contrastive refusal endpoint</td>
+                <td>Rewards refusal-like behavior as a diagnostic contrast against useful-answer unlearning.</td>
+                <td>Low</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
+    </section>
 
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
+    <section class="section muted-section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Main Findings</h2>
+        <div class="finding-grid">
+          <article class="finding">
+            <span class="finding-index">01</span>
+            <h3>Reward hacking produces unintended endpoints.</h3>
+            <p>
+              R0 can collapse to refusal-like behavior, while refusal-sensitive rewards can be satisfied by policy boilerplate or terse target-adjacent fragments. These are concrete optimized behaviors, not just noisy scores.
+            </p>
+          </article>
+          <article class="finding">
+            <span class="finding-index">02</span>
+            <h3>Forgetting scores can hide endpoint changes.</h3>
+            <p>
+              Similar RWKU forget deltas can correspond to refusal collapse, residual leakage, classifier-aligned artifacts, or useful broader-topic answers.
+            </p>
+          </article>
+          <article class="finding">
+            <span class="finding-index">03</span>
+            <h3>Utility and fluency separate the rewards.</h3>
+            <p>
+              R1 and R2 most consistently preserve or improve fluency, while stronger suppressive or refusal-oriented endpoints can look better on forgetting but worse on useful generation.
+            </p>
+          </article>
+          <article class="finding">
+            <span class="finding-index">04</span>
+            <h3>SFT warm-up enables larger-model learning.</h3>
+            <p>
+              Without warm-up, the 3B and 7B runs often do not learn because rollout groups provide little useful reward variation. SFT expands support for non-target completions, enabling GRPO learning while leaving the endpoint reward-dependent.
+            </p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
-<!--End paper poster -->
+    </section>
 
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
+    <section class="section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Selected Diagnostic Held-out Audit Cases</h2>
+        <p class="section-intro">
+          The held-out audit exposes what the reward actually selected: refusal collapse, scale-dependent R0 behavior, and classifier-aligned shortcuts that benchmark scores alone can miss. Cells report median [Q1, Q3] rates across authors; zero starts from the instruct model, while warm starts from the SFT checkpoint.
+        </p>
+        <div class="table-container audit-table-wrap">
+          <table class="table is-fullwidth audit-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>RLVR</th>
+                <th>Reward</th>
+                <th>Lex. leak &darr;</th>
+                <th>Sem. leak &darr;</th>
+                <th>Prompt helpful</th>
+                <th>Refusal</th>
+                <th>Drift &darr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="audit-group">
+                <td colspan="8">Warm-start R0 scale contrast</td>
+              </tr>
+              <tr>
+                <td>0.5B</td>
+                <td>warm</td>
+                <td>R0</td>
+                <td>0.008 [0.000, 0.129]</td>
+                <td>0.025 [0.000, 0.279]</td>
+                <td>0.025 [0.000, 0.329]</td>
+                <td>0.975 [0.529, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+              <tr>
+                <td>1.5B</td>
+                <td>warm</td>
+                <td>R0</td>
+                <td>0.008 [0.000, 0.029]</td>
+                <td>0.008 [0.000, 0.083]</td>
+                <td>0.008 [0.000, 0.233]</td>
+                <td>0.992 [0.692, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+              <tr>
+                <td>3B</td>
+                <td>warm</td>
+                <td>R0</td>
+                <td>0.325 [0.121, 0.458]</td>
+                <td>0.375 [0.054, 0.517]</td>
+                <td>0.375 [0.054, 0.496]</td>
+                <td>0.667 [0.567, 0.871]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+              <tr>
+                <td>7B</td>
+                <td>warm</td>
+                <td>R0</td>
+                <td>0.150 [0.071, 0.613]</td>
+                <td>0.408 [0.163, 0.867]</td>
+                <td>0.467 [0.179, 0.883]</td>
+                <td>0.417 [0.104, 0.621]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+              <tr class="audit-group">
+                <td colspan="8">Refusal collapse</td>
+              </tr>
+              <tr>
+                <td>0.5B</td>
+                <td>zero</td>
+                <td>R0</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>1.000 [1.000, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+              <tr>
+                <td>1.5B</td>
+                <td>zero</td>
+                <td>R0</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>1.000 [1.000, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+              <tr class="audit-group">
+                <td colspan="8">Refusal-classifier hacking</td>
+              </tr>
+              <tr>
+                <td>0.5B</td>
+                <td>zero</td>
+                <td>R1</td>
+                <td>0.058 [0.050, 0.800]</td>
+                <td>0.000 [0.000, 0.762]</td>
+                <td>0.000 [0.000, 0.675]</td>
+                <td>1.000 [0.246, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+              <tr>
+                <td>1.5B</td>
+                <td>zero</td>
+                <td>R1</td>
+                <td>0.000 [0.000, 0.054]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>1.000 [1.000, 1.000]</td>
+                <td>0.000 [0.000, 0.033]</td>
+              </tr>
+              <tr>
+                <td>7B</td>
+                <td>warm</td>
+                <td>R4</td>
+                <td>0.475 [0.142, 0.700]</td>
+                <td>0.067 [0.033, 0.142]</td>
+                <td>0.025 [0.013, 0.037]</td>
+                <td>0.958 [0.537, 0.983]</td>
+                <td>0.000 [0.000, 0.000]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="utility-snapshot">
+          <h3>RWKU Utility Snapshot</h3>
+          <p>
+            This smaller slice isolates the forget/fluency trade-off behind the main finding. The 0.5B zero-RLVR rows show the sharpest contrast: R1/R2 preserve fluency much better than the suppressive or refusal-oriented rewards.
+          </p>
+          <div class="table-container utility-table-wrap">
+            <table class="table is-fullwidth utility-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>RLVR</th>
+                  <th>Reward</th>
+                  <th>Delta Forget &darr;</th>
+                  <th>Delta Fluency &uarr;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R0</td>
+                  <td>-0.107</td>
+                  <td class="bad-delta">-0.995</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>zero</td>
+                  <td>R0</td>
+                  <td>-0.069</td>
+                  <td class="bad-delta">-2.138</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R1</td>
+                  <td>-0.085</td>
+                  <td>-0.157</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>zero</td>
+                  <td>R1</td>
+                  <td>-0.079</td>
+                  <td>-0.068</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R2</td>
+                  <td>-0.082</td>
+                  <td class="good-delta">+0.021</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>zero</td>
+                  <td>R2</td>
+                  <td>-0.038</td>
+                  <td class="good-delta">+0.120</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R4</td>
+                  <td>-0.110</td>
+                  <td class="bad-delta">-3.326</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>zero</td>
+                  <td>R4</td>
+                  <td>-0.048</td>
+                  <td class="bad-delta">-2.650</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R0</td>
+                  <td>-0.316</td>
+                  <td>-0.077</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R1</td>
+                  <td>-0.217</td>
+                  <td class="good-delta">+0.023</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R2</td>
+                  <td>-0.218</td>
+                  <td class="good-delta">+0.076</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R4</td>
+                  <td>-0.261</td>
+                  <td class="bad-delta">-0.915</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
+    </section>
+
+    <section class="section muted-section">
+      <div class="container is-max-widescreen">
+        <h2 class="section-title">Training Diagnostics</h2>
+        <p class="section-intro">
+          The paper's diagnostic plots help distinguish optimization failure from reward-endpoint failure.
+        </p>
+        <div class="figure-grid">
+          <figure class="diagnostic-figure">
+            <img src="static/images/training_diagnostics_qwen2_5_0_5b.png" alt="Training diagnostics for Qwen2.5 0.5B">
+            <figcaption>Qwen2.5 0.5B training diagnostics.</figcaption>
+          </figure>
+          <figure class="diagnostic-figure">
+            <img src="static/images/training_diagnostics_qwen2_5_1_5b.png" alt="Training diagnostics for Qwen2.5 1.5B">
+            <figcaption>Qwen2.5 1.5B training diagnostics.</figcaption>
+          </figure>
+          <figure class="diagnostic-figure">
+            <img src="static/images/training_diagnostics_qwen2_5_3b.png" alt="Training diagnostics for Qwen2.5 3B">
+            <figcaption>Qwen2.5 3B training diagnostics.</figcaption>
+          </figure>
+          <figure class="diagnostic-figure">
+            <img src="static/images/training_diagnostics_qwen2_5_7b.png" alt="Training diagnostics for Qwen2.5 7B">
+            <figcaption>Qwen2.5 7B training diagnostics.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="section-title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@article{balbastre2026grpo_unlearning_reward_specification,
+  title={An Empirical Study of Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning},
+  author={Balbastre, Ruben and Orduna, Juan Manuel and Perez, Mariano},
+  year={2026},
+  month={August},
+  institution={University of Valencia},
+  url={https://github.com/rubenbalbastre/machine-unlearning-paper}
 }</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
+    <div class="container is-max-desktop">
+      <div class="content">
+        <p>
+          Built from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>, adapted for a compact research-project page.
+        </p>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+  <script defer src="static/js/index.js"></script>
+</body>
+</html>

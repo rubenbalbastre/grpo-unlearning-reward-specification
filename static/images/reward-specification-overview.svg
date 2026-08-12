@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 720" role="img" aria-labelledby="title desc">
+  <title id="title">GRPO reward specification study overview</title>
+  <desc id="desc">A compact diagram showing RWKU prompts, initialization, GRPO, reward specifications, behavior checks, and training dynamics.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#17211f" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fbfa; }
+      .frame { fill: #ffffff; stroke: #dbe7e2; stroke-width: 2; }
+      .card { fill: #ffffff; stroke: #dbe7e2; stroke-width: 2.4; filter: url(#shadow); }
+      .soft { fill: #eef4f1; stroke: #dbe7e2; stroke-width: 2; }
+      .title { fill: #17211f; font-family: Inter, Arial, sans-serif; font-size: 34px; font-weight: 800; letter-spacing: 0; }
+      .subtitle { fill: #5e6f6a; font-family: Inter, Arial, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: 0; }
+      .label { fill: #17211f; font-family: Inter, Arial, sans-serif; font-size: 25px; font-weight: 800; letter-spacing: 0; }
+      .smallLabel { fill: #17211f; font-family: Inter, Arial, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: 0; }
+      .text { fill: #5e6f6a; font-family: Inter, Arial, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: 0; }
+      .tiny { fill: #5e6f6a; font-family: Inter, Arial, sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 0; }
+      .tagText { fill: #ffffff; font-family: Inter, Arial, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 0; }
+      .arrow { stroke: #48645e; stroke-width: 4; fill: none; }
+      .arrowHead { fill: #48645e; }
+      .teal { fill: #0f766e; }
+      .coral { fill: #c2410c; }
+      .amber { fill: #b7791f; }
+      .violet { fill: #6d5bd0; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="920" height="720"/>
+  <rect class="frame" x="36" y="34" width="848" height="652" rx="18"/>
+
+  <text class="title" x="74" y="90">Reward decides what GRPO learns</text>
+  <text class="subtitle" x="76" y="123">Behavior checks: held-out audit + RWKU.</text>
+  <text class="subtitle" x="76" y="150">Optimization check: reward curves + KL.</text>
+
+  <rect class="card" x="74" y="184" width="214" height="112" rx="10"/>
+  <text class="label" x="106" y="230">RWKU</text>
+  <text class="text" x="106" y="262">forget prompts</text>
+
+  <path class="arrow" d="M294 240 H344"/>
+  <path class="arrowHead" d="M344 233 L356 240 L344 247 Z"/>
+
+  <rect class="card" x="370" y="184" width="214" height="112" rx="10"/>
+  <text class="label" x="402" y="225">Initialization</text>
+  <rect class="soft" x="402" y="242" width="70" height="34" rx="17"/>
+  <text class="tiny" x="419" y="265">zero</text>
+  <rect class="soft" x="486" y="242" width="64" height="34" rx="17"/>
+  <text class="tiny" x="502" y="265">SFT</text>
+
+  <path class="arrow" d="M590 240 H640"/>
+  <path class="arrowHead" d="M640 233 L652 240 L640 247 Z"/>
+
+  <rect class="card" x="666" y="184" width="180" height="112" rx="10"/>
+  <text class="label" x="706" y="230">GRPO</text>
+  <text class="text" x="706" y="262">LoRA update</text>
+
+  <path class="arrow" d="M756 302 V334"/>
+  <path class="arrowHead" d="M749 334 L756 346 L763 334 Z"/>
+
+  <rect class="card" x="190" y="356" width="540" height="116" rx="10"/>
+  <text class="label" x="226" y="399">Reward specification</text>
+  <rect class="amber" x="228" y="420" width="68" height="38" rx="19"/>
+  <text class="tagText" x="250" y="445">R0</text>
+  <rect class="teal" x="316" y="420" width="68" height="38" rx="19"/>
+  <text class="tagText" x="338" y="445">R1</text>
+  <rect class="violet" x="404" y="420" width="68" height="38" rx="19"/>
+  <text class="tagText" x="426" y="445">R2</text>
+  <rect class="coral" x="492" y="420" width="68" height="38" rx="19"/>
+  <text class="tagText" x="514" y="445">R4</text>
+  <text class="text" x="588" y="444">selects the endpoint</text>
+
+  <text class="tiny" x="135" y="532">Behavior checks</text>
+  <text class="tiny" x="647" y="532">Optimization check</text>
+
+  <rect class="card" x="74" y="548" width="238" height="92" rx="10"/>
+  <text class="smallLabel" x="100" y="588">Held-out audit</text>
+  <text class="text" x="100" y="618">leak / refuse / drift</text>
+
+  <rect class="card" x="342" y="548" width="238" height="92" rx="10"/>
+  <text class="smallLabel" x="368" y="588">RWKU benchmark</text>
+  <text class="text" x="368" y="618">forget + utility</text>
+
+  <rect class="card" x="610" y="548" width="236" height="92" rx="10"/>
+  <text class="smallLabel" x="636" y="588">Training dynamics</text>
+  <text class="text" x="636" y="618">reward + KL</text>
+</svg>
