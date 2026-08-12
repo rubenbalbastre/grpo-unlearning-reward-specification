@@ -348,7 +348,7 @@ a:hover {
 }
 
 .utility-table-wrap {
-  max-width: 760px;
+  max-width: none;
   margin-right: auto;
   margin-left: 0;
 }
@@ -493,15 +493,15 @@ a:hover {
 }
 
 .utility-table {
-  font-size: 0.92rem;
-  min-width: 560px;
+  font-size: 0.8rem;
+  min-width: 1120px;
 }
 
 .utility-table td,
 .utility-table th {
   text-align: right !important;
   white-space: nowrap;
-  padding: 0.68rem 0.8rem;
+  padding: 0.62rem 0.68rem;
 }
 
 .utility-table td:first-child,
@@ -511,6 +511,13 @@ a:hover {
 .utility-table td:nth-child(3),
 .utility-table th:nth-child(3) {
   text-align: left !important;
+}
+
+.utility-table td:nth-child(4),
+.utility-table th:nth-child(4),
+.utility-table td:nth-child(12),
+.utility-table th:nth-child(12) {
+  background: #f6faf8;
 }
 
 .good-delta {
