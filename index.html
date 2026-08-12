@@ -291,10 +291,10 @@
         <h2 class="section-title">Behavioral and Benchmark Diagnostics</h2>
         <h3 class="diagnostic-subtitle">Held-out Audit Cases</h3>
         <p class="section-intro">
-          The held-out audit exposes what the reward actually selected across the Qwen2.5-Instruct sizes: refusal collapse, scale-dependent R0 behavior, and classifier-aligned shortcuts that benchmark scores alone can miss. Cells report median [Q1, Q3] rates across authors; zero starts from the instruct model, while warm starts from the SFT checkpoint.
+          The held-out audit shows which behavior each reward actually selected across Qwen2.5-Instruct sizes. Cells report median [Q1, Q3] rates across authors; zero starts from the instruct model, while warm starts from the SFT checkpoint.
         </p>
         <p class="reading-cue">
-          What to look for: low leakage is only meaningful when it is read together with prompt helpfulness and refusal.
+          What to look for: low leakage only helps if the model is not just refusing or dodging the prompt.
         </p>
         <div class="table-container audit-table-wrap">
           <table class="table is-fullwidth audit-table">
@@ -414,15 +414,15 @@
           </table>
         </div>
         <p class="takeaway">
-          <strong>Takeaway.</strong> Low leakage can come from refusal collapse or classifier-aligned shortcuts, so held-out behavior has to be checked before treating an unlearning score as success.
+          <strong>Takeaway.</strong> Low leakage can mean refusal collapse or classifier-aligned shortcuts, not necessarily useful unlearning.
         </p>
         <div class="utility-snapshot">
           <h3>Selected RWKU Benchmark Rows</h3>
           <p>
-            Median RWKU deltas for the selected rows. The shaded columns show the main contrast: forget improvements can look similar while fluency changes sharply across rewards.
+            These selected RWKU rows keep the core benchmark metrics and fluency. The shaded columns mark the main comparison.
           </p>
           <p class="reading-cue">
-            What to look for: compare the shaded forget column against the shaded fluency column, especially within 0.5B zero-RLVR and 3B warm-start rows.
+            What to look for: similar forget deltas can come with very different fluency costs.
           </p>
           <div class="table-container utility-table-wrap">
             <table class="table is-fullwidth utility-table">
@@ -576,7 +576,7 @@
             </table>
           </div>
           <p class="takeaway">
-            <strong>Takeaway.</strong> RWKU forget deltas do not cleanly rank rewards by behavior; fluency separates R1/R2 from more suppressive or refusal-oriented endpoints.
+            <strong>Takeaway.</strong> RWKU forget deltas do not cleanly rank rewards; fluency exposes a trade-off that forget scores hide.
           </p>
         </div>
       </div>
@@ -586,10 +586,10 @@
       <div class="container is-max-widescreen">
         <h2 class="section-title">Training Diagnostics</h2>
         <p class="section-intro">
-          The paper's diagnostic plots help distinguish optimization failure from reward-endpoint failure.
+          Training diagnostics separate optimization failure from reward-endpoint failure.
         </p>
         <p class="reading-cue">
-          What to look for: active reward variation and KL dynamics indicate whether GRPO had a usable learning signal, while the audits above show what behavior that signal selected.
+          What to look for: active reward variation and KL show whether GRPO had a usable learning signal.
         </p>
         <div class="figure-grid">
           <figure class="diagnostic-figure">
@@ -610,7 +610,7 @@
           </figure>
         </div>
         <p class="takeaway">
-          <strong>Takeaway.</strong> SFT warm-up can make larger models learn under GRPO, but it does not make the reward objective safe by itself.
+          <strong>Takeaway.</strong> SFT warm-up can make larger models learn, but the reward still decides what they learn.
         </p>
       </div>
     </section>
@@ -620,10 +620,10 @@
         <h2 class="section-title">What This Means</h2>
         <div class="content research-copy">
           <p>
-            For LLM unlearning, the reward is not just an optimization detail. It defines the behavioral endpoint that GRPO can reinforce from the completions already in policy support.
+            In GRPO unlearning, the reward is not just an optimization detail. It defines the behavioral endpoint that can be reinforced from completions already in policy support.
           </p>
           <p>
-            A reliable evaluation should therefore combine benchmark deltas, held-out behavioral audits, and training dynamics. Any one of these views can look healthy while the others reveal refusal collapse, residual leakage, reward hacking, or missing learning signal.
+            Reliable evaluation should combine benchmark deltas, held-out behavioral audits, and training dynamics. Any one view can look healthy while another reveals refusal collapse, residual leakage, reward hacking, or missing learning signal.
           </p>
         </div>
       </div>
