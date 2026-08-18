@@ -198,7 +198,7 @@
               <p class="panel-kicker">Evaluation</p>
               <h3>Benchmark plus behavioral audit</h3>
               <p>
-                RWKU metrics are interpreted alongside held-out completion audits, terminal training-rollout audits, reward curves, active-group rates, and KL dynamics.
+                RWKU metrics are interpreted alongside held-out completion audits, terminal training-rollout audits and training dynamics.
               </p>
             </article>
           </div>
@@ -230,7 +230,7 @@
                 <td><span class="reward-tag r1">R1-AntiRefusal</span></td>
                 <td>Suppress leakage without simple refusal</td>
                 <td>Adds explicit anti-refusal pressure to the R0-Lex lexical leakage signal.</td>
-                <td>Low-medium</td>
+                <td>Medium</td>
               </tr>
               <tr>
                 <td><span class="reward-tag r2">R2-Rubric</span></td>
@@ -294,7 +294,7 @@
           The held-out audit shows which behavior each reward selected across Qwen2.5-Instruct sizes. Cells report median [Q1, Q3] rates across target entities; cold starts from the instruct model, while warm starts from the SFT checkpoint.
         </p>
         <p class="reading-cue">
-          What to look for: low leakage only helps if the model is not just refusing or dodging the prompt.
+          <strong>What to look for.</strong> Low leakage is only meaningful when read together with refusal and prompt helpfulness: a model can stop leaking by refusing, by emitting classifier-aligned fragments, or by genuinely avoiding the target while staying useful.
         </p>
         <div class="table-container audit-table-wrap">
           <table class="table is-fullwidth audit-table">
@@ -414,7 +414,7 @@
           </table>
         </div>
         <p class="takeaway">
-          <strong>Takeaway.</strong> Low leakage can mean refusal collapse or classifier-aligned shortcuts, not necessarily useful unlearning.
+          <strong>Key takeaway.</strong> The held-out cases expose several distinct endpoints: R0-Lex can collapse into refusal, while refusal-sensitive rewards can satisfy the classifier without reliably producing the intended non-target behavior.
         </p>
         <div class="terminal-snapshot">
           <h3>Terminal Training-rollout Audit</h3>
@@ -422,7 +422,7 @@
             This audit checks sampled completions from the final training batches, not held-out prompts. It adds broad-topic helpfulness, which directly tests whether training selected useful non-target answering on the optimization distribution.
           </p>
           <p class="reading-cue">
-            What to look for: R2-Rubric has high broad-topic helpfulness while keeping semantic leakage and refusal low.
+            <strong>What to look for.</strong> R2-Rubric has high broad-topic helpfulness while keeping semantic leakage and refusal low.
           </p>
           <div class="table-container terminal-table-wrap">
             <table class="table is-fullwidth terminal-table">
@@ -432,9 +432,10 @@
                   <th>Init.</th>
                   <th>Reward</th>
                   <th class="focus-col">Broad helpful &uarr;</th>
+                  <th>Lex. leak &darr;</th>
                   <th>Sem. leak &darr;</th>
                   <th class="focus-col">Refusal &darr;</th>
-                  <th>N</th>
+                  <th>Drift &darr;</th>
                 </tr>
               </thead>
               <tbody>
@@ -443,126 +444,140 @@
                   <td>warm</td>
                   <td>R0-Lex</td>
                   <td>0.141 [0.051, 0.215]</td>
+                  <td>0.125 [0.047, 0.188]</td>
                   <td>0.117 [0.051, 0.203]</td>
                   <td>0.250 [0.172, 0.594]</td>
-                  <td>10</td>
+                  <td>0.078 [0.051, 0.141]</td>
                 </tr>
                 <tr>
                   <td>0.5B</td>
                   <td>warm</td>
                   <td>R1-AntiRefusal</td>
                   <td>0.156 [0.078, 0.359]</td>
+                  <td>0.172 [0.109, 0.324]</td>
                   <td>0.242 [0.098, 0.359]</td>
                   <td>0.016 [0.000, 0.047]</td>
-                  <td>10</td>
+                  <td>0.148 [0.109, 0.188]</td>
                 </tr>
                 <tr>
                   <td>0.5B</td>
                   <td>warm</td>
                   <td>R2-Rubric</td>
                   <td class="good-delta">0.812 [0.719, 0.859]</td>
+                  <td>0.047 [0.016, 0.094]</td>
                   <td>0.031 [0.016, 0.047]</td>
                   <td>0.031 [0.000, 0.094]</td>
-                  <td>10</td>
+                  <td>0.062 [0.035, 0.078]</td>
                 </tr>
                 <tr>
                   <td>0.5B</td>
                   <td>warm</td>
                   <td>R4-Refusal</td>
                   <td>0.000 [0.000, 0.000]</td>
+                  <td>0.000 [0.000, 0.027]</td>
                   <td>0.000 [0.000, 0.000]</td>
-                  <td class="bad-delta">0.969 [0.953, 1.000]</td>
-                  <td>10</td>
+                  <td>0.969 [0.953, 1.000]</td>
+                  <td>0.000 [0.000, 0.016]</td>
                 </tr>
                 <tr>
                   <td>1.5B</td>
                   <td>warm</td>
                   <td>R0-Lex</td>
                   <td>0.141 [0.016, 0.297]</td>
+                  <td>0.047 [0.016, 0.109]</td>
                   <td>0.055 [0.016, 0.172]</td>
                   <td>0.734 [0.156, 0.891]</td>
-                  <td>10</td>
+                  <td>0.023 [0.016, 0.047]</td>
                 </tr>
                 <tr>
                   <td>1.5B</td>
                   <td>warm</td>
                   <td>R1-AntiRefusal</td>
                   <td>0.422 [0.219, 0.590]</td>
+                  <td>0.156 [0.062, 0.246]</td>
                   <td>0.219 [0.109, 0.336]</td>
                   <td>0.016 [0.000, 0.047]</td>
-                  <td>10</td>
+                  <td>0.078 [0.047, 0.109]</td>
                 </tr>
                 <tr>
                   <td>1.5B</td>
                   <td>warm</td>
                   <td>R2-Rubric</td>
                   <td class="good-delta">0.875 [0.828, 0.922]</td>
+                  <td>0.047 [0.016, 0.094]</td>
                   <td>0.047 [0.016, 0.062]</td>
                   <td>0.000 [0.000, 0.027]</td>
-                  <td>10</td>
+                  <td>0.016 [0.000, 0.031]</td>
                 </tr>
                 <tr>
                   <td>1.5B</td>
                   <td>warm</td>
                   <td>R4-Refusal</td>
                   <td>0.000 [0.000, 0.016]</td>
+                  <td>0.016 [0.000, 0.031]</td>
                   <td>0.000 [0.000, 0.016]</td>
-                  <td class="bad-delta">0.984 [0.969, 1.000]</td>
-                  <td>10</td>
+                  <td>0.984 [0.969, 1.000]</td>
+                  <td>0.000 [0.000, 0.000]</td>
                 </tr>
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
                   <td>R0-Lex</td>
                   <td>0.422 [0.227, 0.547]</td>
+                  <td>0.203 [0.078, 0.312]</td>
                   <td>0.234 [0.094, 0.328]</td>
                   <td>0.250 [0.125, 0.375]</td>
-                  <td>10</td>
+                  <td>0.016 [0.000, 0.016]</td>
                 </tr>
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
                   <td>R1-AntiRefusal</td>
                   <td>0.609 [0.484, 0.727]</td>
+                  <td>0.211 [0.062, 0.328]</td>
                   <td>0.281 [0.129, 0.375]</td>
                   <td>0.000 [0.000, 0.047]</td>
-                  <td>10</td>
+                  <td>0.016 [0.000, 0.016]</td>
                 </tr>
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
                   <td>R2-Rubric</td>
                   <td class="good-delta">0.906 [0.844, 0.938]</td>
+                  <td>0.047 [0.016, 0.156]</td>
                   <td>0.039 [0.016, 0.105]</td>
                   <td>0.008 [0.000, 0.027]</td>
-                  <td>10</td>
+                  <td>0.000 [0.000, 0.016]</td>
                 </tr>
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
                   <td>R4-Refusal</td>
                   <td>0.062 [0.016, 0.141]</td>
+                  <td>0.141 [0.078, 0.219]</td>
                   <td>0.016 [0.000, 0.031]</td>
-                  <td class="bad-delta">0.969 [0.941, 0.984]</td>
-                  <td>10</td>
+                  <td>0.969 [0.941, 0.984]</td>
+                  <td>0.000 [0.000, 0.000]</td>
                 </tr>
                 <tr>
                   <td>7B</td>
                   <td>warm</td>
                   <td>R0-Lex</td>
                   <td>0.625 [0.500, 0.770]</td>
+                  <td>0.078 [0.047, 0.438]</td>
                   <td>0.188 [0.062, 0.445]</td>
                   <td>0.000 [0.000, 0.004]</td>
-                  <td>8</td>
+                  <td>0.016 [0.016, 0.031]</td>
                 </tr>
                 <tr>
                   <td>7B</td>
                   <td>warm</td>
                   <td>R1-AntiRefusal</td>
                   <td>0.727 [0.562, 0.844]</td>
+                  <td>0.078 [0.031, 0.395]</td>
                   <td>0.156 [0.062, 0.363]</td>
                   <td>0.000 [0.000, 0.000]</td>
-                  <td>8</td>
+                  <td>0.031 [0.016, 0.047]</td>
                 </tr>
                 <tr>
                   <td>7B</td>
@@ -570,23 +585,25 @@
                   <td>R2-Rubric</td>
                   <td class="good-delta">0.891 [0.828, 0.938]</td>
                   <td>0.016 [0.000, 0.047]</td>
+                  <td>0.016 [0.000, 0.047]</td>
                   <td>0.000 [0.000, 0.000]</td>
-                  <td>7</td>
+                  <td>0.016 [0.016, 0.031]</td>
                 </tr>
                 <tr>
                   <td>7B</td>
                   <td>warm</td>
                   <td>R4-Refusal</td>
                   <td>0.062 [0.031, 0.109]</td>
+                  <td>0.234 [0.125, 0.344]</td>
                   <td>0.062 [0.031, 0.125]</td>
-                  <td class="bad-delta">0.500 [0.285, 0.660]</td>
-                  <td>8</td>
+                  <td>0.500 [0.285, 0.660]</td>
+                  <td>0.000 [0.000, 0.016]</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p class="takeaway">
-            <strong>Takeaway.</strong> Terminal rollouts support R2-Rubric as the reward most consistently selecting broad-topic answers during optimization, but this is not a held-out broad-topic usefulness result.
+            <strong>Key takeaway.</strong> Terminal rollouts support R2-Rubric as the reward most consistently selecting broad-topic answers during optimization, but this is not a held-out broad-topic usefulness result.
           </p>
         </div>
         <div class="utility-snapshot">
@@ -595,7 +612,7 @@
             These selected RWKU rows keep the core benchmark metrics and fluency. The shaded columns mark the main comparison.
           </p>
           <p class="reading-cue">
-            What to look for: similar forget deltas can come with very different fluency costs.
+            <strong>What to look for.</strong> Similar forget deltas can come with very different fluency costs.
           </p>
           <div class="table-container utility-table-wrap">
             <table class="table is-fullwidth utility-table">
@@ -749,7 +766,7 @@
             </table>
           </div>
           <p class="takeaway">
-            <strong>Takeaway.</strong> RWKU forget deltas do not cleanly rank rewards; fluency exposes a trade-off that forget scores hide.
+            <strong>Key takeaway.</strong> RWKU forget deltas do not cleanly rank rewards; fluency exposes a trade-off that forget scores hide.
           </p>
         </div>
       </div>
@@ -762,7 +779,7 @@
           Training diagnostics separate optimization failure from reward-endpoint failure.
         </p>
         <p class="reading-cue">
-          What to look for: active reward variation and KL show whether GRPO had a usable learning signal; the audits above show what behavior that signal selected.
+          <strong>What to look for.</strong> Active reward variation and KL show whether GRPO had a usable learning signal; the audits above show what behavior that signal selected.
         </p>
         <div class="figure-grid">
           <figure class="diagnostic-figure">
@@ -783,7 +800,7 @@
           </figure>
         </div>
         <p class="takeaway">
-          <strong>Takeaway.</strong> SFT warm-up can make larger models learn, but the reward still decides what they learn.
+          <strong>Key takeaway.</strong> SFT warm-up can make larger models learn, but the reward still decides what they learn.
         </p>
       </div>
     </section>

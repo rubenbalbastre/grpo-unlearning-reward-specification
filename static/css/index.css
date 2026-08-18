@@ -297,10 +297,12 @@ a:hover {
 }
 
 .section-intro {
-  max-width: 820px;
+  width: 100%;
+  max-width: none;
   margin: -0.45rem 0 1.6rem;
   color: var(--muted);
   font-size: 1.05rem;
+  line-height: 1.65;
 }
 
 .diagnostic-subtitle {
@@ -312,15 +314,22 @@ a:hover {
 }
 
 .reading-cue {
-  max-width: 820px;
+  width: 100%;
+  max-width: none;
   margin: -0.55rem 0 1.1rem;
   color: var(--ink);
   font-size: 0.98rem;
-  font-weight: 650;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.reading-cue strong {
+  font-weight: 800;
 }
 
 .takeaway {
-  max-width: 860px;
+  width: 100%;
+  max-width: none;
   margin: 1rem 0 0;
   padding: 0.9rem 1rem;
   color: var(--ink);
@@ -527,15 +536,23 @@ a:hover {
 
 .terminal-snapshot p,
 .utility-snapshot p {
-  max-width: 760px;
+  width: 100%;
+  max-width: none;
   margin: 0 0 1rem;
   color: var(--muted);
   font-size: 0.98rem;
 }
 
+.terminal-snapshot .reading-cue,
+.utility-snapshot .reading-cue,
+.terminal-snapshot .takeaway,
+.utility-snapshot .takeaway {
+  color: var(--ink);
+}
+
 .terminal-table {
-  font-size: 0.82rem;
-  min-width: 1040px;
+  font-size: 0.86rem;
+  min-width: 1120px;
 }
 
 .terminal-table td,
@@ -556,8 +573,8 @@ a:hover {
 
 .terminal-table td:nth-child(4),
 .terminal-table th:nth-child(4),
-.terminal-table td:nth-child(6),
-.terminal-table th:nth-child(6) {
+.terminal-table td:nth-child(7),
+.terminal-table th:nth-child(7) {
   background: #f6faf8;
 }
 
