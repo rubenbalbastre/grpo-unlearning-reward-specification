@@ -294,7 +294,7 @@
           The held-out audit shows which behavior each reward selected across Qwen2.5-Instruct sizes. Cells report median [Q1, Q3] rates across target entities; cold starts from the instruct model, while warm starts from the SFT checkpoint.
         </p>
         <p class="reading-cue">
-          <strong>What to look for.</strong> Low leakage is only meaningful when read together with refusal and prompt helpfulness: a model can stop leaking by refusing, by emitting classifier-aligned fragments, or by genuinely avoiding the target while staying useful.
+          <strong>What to look for.</strong> Read leakage together with refusal and prompt helpfulness. The same low-leakage cell can mean refusal collapse, terse classifier-aligned text, or a genuinely useful non-target answer.
         </p>
         <div class="table-container audit-table-wrap">
           <table class="table is-fullwidth audit-table">
@@ -414,7 +414,7 @@
           </table>
         </div>
         <p class="takeaway">
-          <strong>Key takeaway.</strong> The held-out cases expose several distinct endpoints: R0-Lex can collapse into refusal, while refusal-sensitive rewards can satisfy the classifier without reliably producing the intended non-target behavior.
+          <strong>Key takeaway.</strong> Held-out completions expose reward-specific endpoints: R0-Lex often avoids the target through refusal, while refusal-sensitive rewards can satisfy the classifier without reliably producing the intended non-target behavior.
         </p>
         <div class="terminal-snapshot">
           <h3>Terminal Training-rollout Audit</h3>
@@ -422,7 +422,7 @@
             This audit checks sampled completions from the final training batches, not held-out prompts. It adds broad-topic helpfulness, which directly tests whether training selected useful non-target answering on the optimization distribution.
           </p>
           <p class="reading-cue">
-            <strong>What to look for.</strong> R2-Rubric has high broad-topic helpfulness while keeping semantic leakage and refusal low.
+            <strong>What to look for.</strong> Broad-topic helpfulness separates useful terminal behavior from merely non-refusing or target-adjacent completions.
           </p>
           <div class="table-container terminal-table-wrap">
             <table class="table is-fullwidth terminal-table">
@@ -603,7 +603,7 @@
             </table>
           </div>
           <p class="takeaway">
-            <strong>Key takeaway.</strong> Terminal rollouts support R2-Rubric as the reward most consistently selecting broad-topic answers during optimization, but this is not a held-out broad-topic usefulness result.
+            <strong>Key takeaway.</strong> On terminal rollouts, R2-Rubric is the clearest useful endpoint: high broad-topic helpfulness with low semantic leakage and low refusal.
           </p>
         </div>
         <div class="utility-snapshot">
@@ -612,7 +612,7 @@
             These selected RWKU rows keep the core benchmark metrics and fluency. The shaded columns mark the main comparison.
           </p>
           <p class="reading-cue">
-            <strong>What to look for.</strong> Similar forget deltas can come with very different fluency costs.
+            <strong>What to look for.</strong> Compare forget deltas against fluency and neighboring-topic utility; the benchmark score alone does not identify the behavioral endpoint.
           </p>
           <div class="table-container utility-table-wrap">
             <table class="table is-fullwidth utility-table">
@@ -766,7 +766,7 @@
             </table>
           </div>
           <p class="takeaway">
-            <strong>Key takeaway.</strong> RWKU forget deltas do not cleanly rank rewards; fluency exposes a trade-off that forget scores hide.
+            <strong>Key takeaway.</strong> Comparable forget gains do not imply comparable behavior: R1-AntiRefusal and R2-Rubric preserve fluency better, while R0-Lex and R4-Refusal can buy forgetting with collapse or fluency loss.
           </p>
         </div>
       </div>
@@ -779,7 +779,7 @@
           Training diagnostics separate optimization failure from reward-endpoint failure.
         </p>
         <p class="reading-cue">
-          <strong>What to look for.</strong> Active reward variation and KL show whether GRPO had a usable learning signal; the audits above show what behavior that signal selected.
+          <strong>What to look for.</strong> Reward variation, active groups, and KL show whether GRPO had room to update before the endpoint audits say what behavior was selected.
         </p>
         <div class="figure-grid">
           <figure class="diagnostic-figure">
@@ -800,7 +800,7 @@
           </figure>
         </div>
         <p class="takeaway">
-          <strong>Key takeaway.</strong> SFT warm-up can make larger models learn, but the reward still decides what they learn.
+          <strong>Key takeaway.</strong> SFT warm-up supplies a learning signal for larger models; after warm-up, the reward specification still determines which behavior is reinforced.
         </p>
       </div>
     </section>
