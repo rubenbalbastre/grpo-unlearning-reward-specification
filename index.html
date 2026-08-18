@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="title" content="An Empirical Study of Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning">
-  <meta name="description" content="A project page for a controlled study of reward specification, RWKU reliability, and behavioral endpoints in GRPO-based LLM unlearning.">
+  <meta name="description" content="A project page for a controlled study of reward specification, RWKU reliability, terminal rollout audits, and behavioral endpoints in GRPO-based LLM unlearning.">
   <meta name="keywords" content="LLM unlearning, GRPO, reward specification, RLVR, RWKU, benchmark reliability, LoRA, language models">
   <meta name="author" content="Ruben Balbastre, Juan Manuel Orduna, Mariano Perez">
   <meta name="robots" content="index, follow">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="University of Valencia">
   <meta property="og:title" content="Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning">
-  <meta property="og:description" content="A controlled empirical study showing that reward optimization, RWKU forget scores, held-out behavior, and training dynamics can disagree.">
+  <meta property="og:description" content="A controlled empirical study showing that reward optimization, RWKU forget scores, held-out completions, terminal rollouts, and training dynamics can disagree.">
   <meta property="og:image" content="static/images/reward-specification-overview.svg">
   <meta property="og:image:alt" content="Overview of the GRPO-based LLM unlearning study">
   <meta property="article:published_time" content="2026-08-01T00:00:00.000Z">
@@ -24,7 +24,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning">
-  <meta name="twitter:description" content="A controlled empirical study of reward hacking, RWKU reliability, and policy-support limits in GRPO-based LLM unlearning.">
+  <meta name="twitter:description" content="A controlled empirical study of reward hacking, RWKU reliability, terminal rollout audits, and policy-support limits in GRPO-based LLM unlearning.">
   <meta name="twitter:image" content="static/images/reward-specification-overview.svg">
   <meta name="twitter:image:alt" content="Overview of the GRPO-based LLM unlearning study">
 
@@ -99,7 +99,7 @@
                 An Empirical Study of Reward Specification and Benchmark Reliability in GRPO-based LLM Unlearning
               </h1>
               <p class="subtitle publication-subtitle">
-                Reward success, RWKU forget scores, held-out behavior, and training dynamics do not always tell the same story.
+                Reward success, RWKU forget scores, held-out completions, terminal rollouts, and training dynamics do not always tell the same story.
               </p>
 
               <div class="publication-authors">
@@ -159,13 +159,13 @@
         <h2 class="section-title">Abstract</h2>
         <div class="content research-copy">
           <p>
-            Practical LLM unlearning is usually evaluated through two objectives: suppress target-specific knowledge and preserve non-target utility. In generative QA, this leaves a third behavior underspecified: when a target-adjacent prompt admits a safe broader answer, the model should answer at that level rather than leak, evade, or refuse.
+            Practical LLM unlearning is usually evaluated through two objectives: suppress target-specific knowledge and preserve non-target utility. In generative QA, this leaves a third behavior underspecified: when a target-adjacent prompt admits a broader answer without target-specific leakage, the model should answer at that level rather than leak, evade, or refuse.
           </p>
           <p>
-            We study this specification problem in a controlled LoRA-GRPO RWKU setting, comparing four reward designs that span lexical suppression, anti-refusal shaping, rubric-based broad answering, and an explicit refusal contrast, with and without SFT warm-up. The experiments show that optimization success is not equivalent to behavioral unlearning: RWKU forget scores, held-out behavioral audits, reward curves, and KL dynamics can point to different conclusions.
+            We study this specification problem in a controlled LoRA-GRPO RWKU setting, comparing four reward designs that span lexical suppression, anti-refusal shaping, rubric-based broad answering, and an explicit refusal contrast, with and without SFT warm-up. The experiments show that optimization success is not equivalent to behavioral unlearning: RWKU forget scores, held-out completion audits, terminal training-rollout audits, and training dynamics can point to different conclusions.
           </p>
           <p>
-            We trace these disagreements to reward-hacking endpoints, policy-support limits in GRPO, and benchmark probes that miss endpoint changes. Qualitative audits show safe broad-topic answering under R2; dedicated held-out measurement of that endpoint is ongoing.
+            We trace these disagreements to reward-hacking endpoints, policy-support limits in GRPO, benchmark probes that miss endpoint changes, and rewards that can select broad-topic answering with low semantic leakage during optimization.
           </p>
         </div>
       </div>
@@ -198,7 +198,7 @@
               <p class="panel-kicker">Evaluation</p>
               <h3>Benchmark plus behavioral audit</h3>
               <p>
-                RWKU metrics are interpreted alongside held-out lexical leakage, semantic leakage, prompt helpfulness, refusal, language drift, reward curves, active-group rates, and KL dynamics.
+                RWKU metrics are interpreted alongside held-out completion audits, terminal training-rollout audits, reward curves, active-group rates, and KL dynamics.
               </p>
             </article>
           </div>
@@ -221,25 +221,25 @@
             </thead>
             <tbody>
               <tr>
-                <td><span class="reward-tag r0">R0</span></td>
+                <td><span class="reward-tag r0">R0-Lex</span></td>
                 <td>Suppress configured target patterns</td>
                 <td>Lexical suppression baseline; relies on base-model behavior and KL regularization for usefulness.</td>
                 <td>Low</td>
               </tr>
               <tr>
-                <td><span class="reward-tag r1">R1</span></td>
+                <td><span class="reward-tag r1">R1-AntiRefusal</span></td>
                 <td>Suppress leakage without simple refusal</td>
-                <td>Adds explicit anti-refusal pressure to the R0 lexical leakage signal.</td>
+                <td>Adds explicit anti-refusal pressure to the R0-Lex lexical leakage signal.</td>
                 <td>Low-medium</td>
               </tr>
               <tr>
-                <td><span class="reward-tag r2">R2</span></td>
+                <td><span class="reward-tag r2">R2-Rubric</span></td>
                 <td>Answer at a safe broader-topic level</td>
                 <td>Uses a refusal-prefiltered rubric judge to prefer useful nearby-topic completions without target-specific leakage.</td>
                 <td>High</td>
               </tr>
               <tr>
-                <td><span class="reward-tag r4">R4</span></td>
+                <td><span class="reward-tag r4">R4-Refusal</span></td>
                 <td>Contrastive refusal endpoint</td>
                 <td>Rewards refusal-like behavior as a diagnostic contrast against useful-answer unlearning.</td>
                 <td>Low</td>
@@ -258,21 +258,21 @@
             <span class="finding-index">01</span>
             <h3>Reward hacking produces unintended endpoints.</h3>
             <p>
-              R0 can collapse to refusal-like behavior, while refusal-sensitive rewards can be satisfied by policy boilerplate or terse target-adjacent fragments. These are concrete optimized behaviors, not just noisy scores.
+              R0-Lex can collapse to refusal-like behavior, while refusal-sensitive rewards can be satisfied by policy boilerplate or terse target-adjacent fragments. These are concrete optimized behaviors, not just noisy scores.
             </p>
           </article>
           <article class="finding">
             <span class="finding-index">02</span>
             <h3>Forgetting scores can hide endpoint changes.</h3>
             <p>
-              Similar RWKU forget deltas can correspond to refusal collapse, residual leakage, classifier-aligned artifacts, or qualitatively promising broader-topic answers.
+              Similar RWKU forget deltas can correspond to refusal collapse, residual leakage, classifier-aligned artifacts, or R2-Rubric broad-topic behavior on terminal rollouts.
             </p>
           </article>
           <article class="finding">
             <span class="finding-index">03</span>
             <h3>Utility and fluency separate the rewards.</h3>
             <p>
-              R1 and R2 most consistently preserve or improve fluency, while stronger suppressive or refusal-oriented endpoints can look better on forgetting but worse on useful generation.
+              R1-AntiRefusal and R2-Rubric most consistently preserve or improve fluency, while stronger suppressive or refusal-oriented endpoints can look better on forgetting but worse on useful generation.
             </p>
           </article>
           <article class="finding">
@@ -291,7 +291,7 @@
         <h2 class="section-title">Behavioral and Benchmark Diagnostics</h2>
         <h3 class="diagnostic-subtitle">Held-out Audit Cases</h3>
         <p class="section-intro">
-          The held-out audit shows which behavior each reward actually selected across Qwen2.5-Instruct sizes. Cells report median [Q1, Q3] rates across authors; zero starts from the instruct model, while warm starts from the SFT checkpoint.
+          The held-out audit shows which behavior each reward selected across Qwen2.5-Instruct sizes. Cells report median [Q1, Q3] rates across target entities; cold starts from the instruct model, while warm starts from the SFT checkpoint.
         </p>
         <p class="reading-cue">
           What to look for: low leakage only helps if the model is not just refusing or dodging the prompt.
@@ -301,23 +301,23 @@
             <thead>
               <tr>
                 <th>Model</th>
-                <th>RLVR</th>
+                <th>Init.</th>
                 <th>Reward</th>
                 <th>Lex. leak &darr;</th>
                 <th>Sem. leak &darr;</th>
-                <th>Prompt helpful</th>
+                <th>Prompt helpful &uarr;</th>
                 <th>Refusal</th>
                 <th>Drift &darr;</th>
               </tr>
             </thead>
             <tbody>
               <tr class="audit-group">
-                <td colspan="8">Warm-start R0 scale contrast</td>
+                <td colspan="8">Warm-start R0-Lex scale contrast</td>
               </tr>
               <tr>
                 <td>0.5B</td>
                 <td>warm</td>
-                <td>R0</td>
+                <td>R0-Lex</td>
                 <td>0.008 [0.000, 0.129]</td>
                 <td>0.025 [0.000, 0.279]</td>
                 <td>0.025 [0.000, 0.329]</td>
@@ -327,7 +327,7 @@
               <tr>
                 <td>1.5B</td>
                 <td>warm</td>
-                <td>R0</td>
+                <td>R0-Lex</td>
                 <td>0.008 [0.000, 0.029]</td>
                 <td>0.008 [0.000, 0.083]</td>
                 <td>0.008 [0.000, 0.233]</td>
@@ -337,7 +337,7 @@
               <tr>
                 <td>3B</td>
                 <td>warm</td>
-                <td>R0</td>
+                <td>R0-Lex</td>
                 <td>0.325 [0.121, 0.458]</td>
                 <td>0.375 [0.054, 0.517]</td>
                 <td>0.375 [0.054, 0.496]</td>
@@ -347,7 +347,7 @@
               <tr>
                 <td>7B</td>
                 <td>warm</td>
-                <td>R0</td>
+                <td>R0-Lex</td>
                 <td>0.150 [0.071, 0.613]</td>
                 <td>0.408 [0.163, 0.867]</td>
                 <td>0.467 [0.179, 0.883]</td>
@@ -359,8 +359,8 @@
               </tr>
               <tr>
                 <td>0.5B</td>
-                <td>zero</td>
-                <td>R0</td>
+                <td>cold</td>
+                <td>R0-Lex</td>
                 <td>0.000 [0.000, 0.000]</td>
                 <td>0.000 [0.000, 0.000]</td>
                 <td>0.000 [0.000, 0.000]</td>
@@ -369,8 +369,8 @@
               </tr>
               <tr>
                 <td>1.5B</td>
-                <td>zero</td>
-                <td>R0</td>
+                <td>cold</td>
+                <td>R0-Lex</td>
                 <td>0.000 [0.000, 0.000]</td>
                 <td>0.000 [0.000, 0.000]</td>
                 <td>0.000 [0.000, 0.000]</td>
@@ -382,8 +382,8 @@
               </tr>
               <tr>
                 <td>0.5B</td>
-                <td>zero</td>
-                <td>R1</td>
+                <td>cold</td>
+                <td>R1-AntiRefusal</td>
                 <td>0.058 [0.050, 0.800]</td>
                 <td>0.000 [0.000, 0.762]</td>
                 <td>0.000 [0.000, 0.675]</td>
@@ -392,8 +392,8 @@
               </tr>
               <tr>
                 <td>1.5B</td>
-                <td>zero</td>
-                <td>R1</td>
+                <td>cold</td>
+                <td>R1-AntiRefusal</td>
                 <td>0.000 [0.000, 0.054]</td>
                 <td>0.000 [0.000, 0.000]</td>
                 <td>0.000 [0.000, 0.000]</td>
@@ -403,7 +403,7 @@
               <tr>
                 <td>7B</td>
                 <td>warm</td>
-                <td>R4</td>
+                <td>R4-Refusal</td>
                 <td>0.475 [0.142, 0.700]</td>
                 <td>0.067 [0.033, 0.142]</td>
                 <td>0.025 [0.013, 0.037]</td>
@@ -416,6 +416,179 @@
         <p class="takeaway">
           <strong>Takeaway.</strong> Low leakage can mean refusal collapse or classifier-aligned shortcuts, not necessarily useful unlearning.
         </p>
+        <div class="terminal-snapshot">
+          <h3>Terminal Training-rollout Audit</h3>
+          <p>
+            This audit checks sampled completions from the final training batches, not held-out prompts. It adds broad-topic helpfulness, which directly tests whether training selected useful non-target answering on the optimization distribution.
+          </p>
+          <p class="reading-cue">
+            What to look for: R2-Rubric has high broad-topic helpfulness while keeping semantic leakage and refusal low.
+          </p>
+          <div class="table-container terminal-table-wrap">
+            <table class="table is-fullwidth terminal-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Init.</th>
+                  <th>Reward</th>
+                  <th class="focus-col">Broad helpful &uarr;</th>
+                  <th>Sem. leak &darr;</th>
+                  <th class="focus-col">Refusal &darr;</th>
+                  <th>N</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R0-Lex</td>
+                  <td>0.141 [0.051, 0.215]</td>
+                  <td>0.117 [0.051, 0.203]</td>
+                  <td>0.250 [0.172, 0.594]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R1-AntiRefusal</td>
+                  <td>0.156 [0.078, 0.359]</td>
+                  <td>0.242 [0.098, 0.359]</td>
+                  <td>0.016 [0.000, 0.047]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R2-Rubric</td>
+                  <td class="good-delta">0.812 [0.719, 0.859]</td>
+                  <td>0.031 [0.016, 0.047]</td>
+                  <td>0.031 [0.000, 0.094]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>warm</td>
+                  <td>R4-Refusal</td>
+                  <td>0.000 [0.000, 0.000]</td>
+                  <td>0.000 [0.000, 0.000]</td>
+                  <td class="bad-delta">0.969 [0.953, 1.000]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>1.5B</td>
+                  <td>warm</td>
+                  <td>R0-Lex</td>
+                  <td>0.141 [0.016, 0.297]</td>
+                  <td>0.055 [0.016, 0.172]</td>
+                  <td>0.734 [0.156, 0.891]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>1.5B</td>
+                  <td>warm</td>
+                  <td>R1-AntiRefusal</td>
+                  <td>0.422 [0.219, 0.590]</td>
+                  <td>0.219 [0.109, 0.336]</td>
+                  <td>0.016 [0.000, 0.047]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>1.5B</td>
+                  <td>warm</td>
+                  <td>R2-Rubric</td>
+                  <td class="good-delta">0.875 [0.828, 0.922]</td>
+                  <td>0.047 [0.016, 0.062]</td>
+                  <td>0.000 [0.000, 0.027]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>1.5B</td>
+                  <td>warm</td>
+                  <td>R4-Refusal</td>
+                  <td>0.000 [0.000, 0.016]</td>
+                  <td>0.000 [0.000, 0.016]</td>
+                  <td class="bad-delta">0.984 [0.969, 1.000]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R0-Lex</td>
+                  <td>0.422 [0.227, 0.547]</td>
+                  <td>0.234 [0.094, 0.328]</td>
+                  <td>0.250 [0.125, 0.375]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R1-AntiRefusal</td>
+                  <td>0.609 [0.484, 0.727]</td>
+                  <td>0.281 [0.129, 0.375]</td>
+                  <td>0.000 [0.000, 0.047]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R2-Rubric</td>
+                  <td class="good-delta">0.906 [0.844, 0.938]</td>
+                  <td>0.039 [0.016, 0.105]</td>
+                  <td>0.008 [0.000, 0.027]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
+                  <td>warm</td>
+                  <td>R4-Refusal</td>
+                  <td>0.062 [0.016, 0.141]</td>
+                  <td>0.016 [0.000, 0.031]</td>
+                  <td class="bad-delta">0.969 [0.941, 0.984]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>7B</td>
+                  <td>warm</td>
+                  <td>R0-Lex</td>
+                  <td>0.625 [0.500, 0.770]</td>
+                  <td>0.188 [0.062, 0.445]</td>
+                  <td>0.000 [0.000, 0.004]</td>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <td>7B</td>
+                  <td>warm</td>
+                  <td>R1-AntiRefusal</td>
+                  <td>0.727 [0.562, 0.844]</td>
+                  <td>0.156 [0.062, 0.363]</td>
+                  <td>0.000 [0.000, 0.000]</td>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <td>7B</td>
+                  <td>warm</td>
+                  <td>R2-Rubric</td>
+                  <td class="good-delta">0.891 [0.828, 0.938]</td>
+                  <td>0.016 [0.000, 0.047]</td>
+                  <td>0.000 [0.000, 0.000]</td>
+                  <td>7</td>
+                </tr>
+                <tr>
+                  <td>7B</td>
+                  <td>warm</td>
+                  <td>R4-Refusal</td>
+                  <td>0.062 [0.031, 0.109]</td>
+                  <td>0.062 [0.031, 0.125]</td>
+                  <td class="bad-delta">0.500 [0.285, 0.660]</td>
+                  <td>8</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="takeaway">
+            <strong>Takeaway.</strong> Terminal rollouts support R2-Rubric as the reward most consistently selecting broad-topic answers during optimization, but this is not a held-out broad-topic usefulness result.
+          </p>
+        </div>
         <div class="utility-snapshot">
           <h3>Selected RWKU Benchmark Rows</h3>
           <p>
@@ -429,7 +602,7 @@
               <thead>
                 <tr>
                   <th>Model</th>
-                  <th>RLVR</th>
+                  <th>Init.</th>
                   <th>Reward</th>
                   <th class="focus-col">&Delta; Forget &darr;</th>
                   <th>&Delta; Neighbor &uarr;</th>
@@ -443,7 +616,7 @@
                 <tr>
                   <td>0.5B</td>
                   <td>warm</td>
-                  <td>R0</td>
+                  <td>R0-Lex</td>
                   <td class="focus-col">-0.107</td>
                   <td>-0.075</td>
                   <td>2.625</td>
@@ -453,8 +626,8 @@
                 </tr>
                 <tr>
                   <td>0.5B</td>
-                  <td>zero</td>
-                  <td>R0</td>
+                  <td>cold</td>
+                  <td>R0-Lex</td>
                   <td class="focus-col">-0.069</td>
                   <td>-0.007</td>
                   <td>1.566</td>
@@ -465,7 +638,7 @@
                 <tr>
                   <td>0.5B</td>
                   <td>warm</td>
-                  <td>R1</td>
+                  <td>R1-AntiRefusal</td>
                   <td class="focus-col">-0.085</td>
                   <td>-0.024</td>
                   <td>2.167</td>
@@ -475,8 +648,8 @@
                 </tr>
                 <tr>
                   <td>0.5B</td>
-                  <td>zero</td>
-                  <td>R1</td>
+                  <td>cold</td>
+                  <td>R1-AntiRefusal</td>
                   <td class="focus-col">-0.079</td>
                   <td>-0.021</td>
                   <td>1.089</td>
@@ -487,7 +660,7 @@
                 <tr>
                   <td>0.5B</td>
                   <td>warm</td>
-                  <td>R2</td>
+                  <td>R2-Rubric</td>
                   <td class="focus-col">-0.082</td>
                   <td>-0.055</td>
                   <td>2.683</td>
@@ -497,8 +670,8 @@
                 </tr>
                 <tr>
                   <td>0.5B</td>
-                  <td>zero</td>
-                  <td>R2</td>
+                  <td>cold</td>
+                  <td>R2-Rubric</td>
                   <td class="focus-col">-0.038</td>
                   <td>0.020</td>
                   <td>0.562</td>
@@ -509,7 +682,7 @@
                 <tr>
                   <td>0.5B</td>
                   <td>warm</td>
-                  <td>R4</td>
+                  <td>R4-Refusal</td>
                   <td class="focus-col">-0.110</td>
                   <td>-0.041</td>
                   <td>2.883</td>
@@ -519,8 +692,8 @@
                 </tr>
                 <tr>
                   <td>0.5B</td>
-                  <td>zero</td>
-                  <td>R4</td>
+                  <td>cold</td>
+                  <td>R4-Refusal</td>
                   <td class="focus-col">-0.048</td>
                   <td>-0.035</td>
                   <td>1.070</td>
@@ -531,7 +704,7 @@
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
-                  <td>R0</td>
+                  <td>R0-Lex</td>
                   <td class="focus-col">-0.316</td>
                   <td>-0.073</td>
                   <td>0.465</td>
@@ -542,7 +715,7 @@
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
-                  <td>R1</td>
+                  <td>R1-AntiRefusal</td>
                   <td class="focus-col">-0.217</td>
                   <td>-0.057</td>
                   <td>0.180</td>
@@ -553,7 +726,7 @@
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
-                  <td>R2</td>
+                  <td>R2-Rubric</td>
                   <td class="focus-col">-0.218</td>
                   <td>-0.100</td>
                   <td>0.476</td>
@@ -564,7 +737,7 @@
                 <tr>
                   <td>3B</td>
                   <td>warm</td>
-                  <td>R4</td>
+                  <td>R4-Refusal</td>
                   <td class="focus-col">-0.261</td>
                   <td>-0.129</td>
                   <td>-0.152</td>
@@ -589,7 +762,7 @@
           Training diagnostics separate optimization failure from reward-endpoint failure.
         </p>
         <p class="reading-cue">
-          What to look for: active reward variation and KL show whether GRPO had a usable learning signal.
+          What to look for: active reward variation and KL show whether GRPO had a usable learning signal; the audits above show what behavior that signal selected.
         </p>
         <div class="figure-grid">
           <figure class="diagnostic-figure">
@@ -623,7 +796,7 @@
             In GRPO unlearning, the reward is not just an optimization detail. It defines the behavioral endpoint that can be reinforced from completions already in policy support.
           </p>
           <p>
-            Reliable evaluation should combine benchmark deltas, held-out behavioral audits, and training dynamics. Any one view can look healthy while another reveals refusal collapse, residual leakage, reward hacking, or missing learning signal.
+            Reliable evaluation should combine benchmark deltas, held-out audits, terminal rollout audits, and training dynamics. Any one view can look healthy while another reveals refusal collapse, residual leakage, reward hacking, or missing learning signal.
           </p>
         </div>
       </div>

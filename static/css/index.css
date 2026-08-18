@@ -372,6 +372,7 @@ a:hover {
 
 .reward-table-wrap,
 .audit-table-wrap,
+.terminal-table-wrap,
 .utility-table-wrap {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -415,7 +416,7 @@ a:hover {
 }
 
 .reward-table td:nth-child(1) {
-  width: 90px;
+  width: 150px;
 }
 
 .reward-table td:nth-child(4) {
@@ -426,12 +427,13 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 48px;
-  padding: 0.34rem 0.5rem;
+  min-width: 72px;
+  padding: 0.34rem 0.58rem;
   color: white;
   border-radius: 999px;
-  font-size: 0.86rem;
+  font-size: 0.78rem;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .reward-tag.r0 {
@@ -511,6 +513,11 @@ a:hover {
   margin-top: 3rem;
 }
 
+.terminal-snapshot {
+  margin-top: 3rem;
+}
+
+.terminal-snapshot h3,
 .utility-snapshot h3 {
   margin: 0 0 0.45rem;
   color: var(--ink);
@@ -518,11 +525,40 @@ a:hover {
   font-weight: 800;
 }
 
+.terminal-snapshot p,
 .utility-snapshot p {
   max-width: 760px;
   margin: 0 0 1rem;
   color: var(--muted);
   font-size: 0.98rem;
+}
+
+.terminal-table {
+  font-size: 0.82rem;
+  min-width: 1040px;
+}
+
+.terminal-table td,
+.terminal-table th {
+  text-align: right !important;
+  white-space: nowrap;
+  padding: 0.62rem 0.68rem;
+}
+
+.terminal-table td:first-child,
+.terminal-table th:first-child,
+.terminal-table td:nth-child(2),
+.terminal-table th:nth-child(2),
+.terminal-table td:nth-child(3),
+.terminal-table th:nth-child(3) {
+  text-align: left !important;
+}
+
+.terminal-table td:nth-child(4),
+.terminal-table th:nth-child(4),
+.terminal-table td:nth-child(6),
+.terminal-table th:nth-child(6) {
+  background: #f6faf8;
 }
 
 .utility-table {
