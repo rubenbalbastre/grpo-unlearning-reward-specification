@@ -21,6 +21,18 @@ The page is adapted from the Academic Project Page Template, but the placeholder
 
 Open `index.html` in a browser. No build step is required.
 
+## Publish
+
+This repository includes a GitHub Pages workflow at `.github/workflows/deploy-pages.yml`.
+In GitHub, open `Settings` -> `Pages` and set the source to `GitHub Actions`.
+After that, every push to `master` deploys the static page automatically.
+
+The project-page URL should be:
+
+```text
+https://rubenbalbastre.github.io/grpo-unlearning-reward-specification/
+```
+
 ## Refresh Assets
 
 If the paper changes, refresh the local PDF and diagnostic figures from the paper repository:
