@@ -6,6 +6,7 @@ Tiny static project page for:
 
 The page is adapted from the Academic Project Page Template, but the placeholder videos and carousels have been removed because the paper is best represented by its reward taxonomy, behavioral audit snapshot, and training diagnostics.
 
+
 ## Files
 
 - `index.html`: page content and paper metadata.
