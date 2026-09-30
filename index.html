@@ -16,7 +16,7 @@
   <meta property="og:description" content="A controlled empirical study showing that reward optimization, RWKU forget scores, held-out completions, and training dynamics can disagree.">
   <meta property="og:image" content="static/images/reward-specification-overview.svg">
   <meta property="og:image:alt" content="Overview of the GRPO-based LLM unlearning study">
-  <meta property="article:published_time" content="2026-08-01T00:00:00.000Z">
+  <meta property="article:published_time" content="2026-09-01T00:00:00.000Z">
   <meta property="article:section" content="Research">
   <meta property="article:tag" content="LLM unlearning">
   <meta property="article:tag" content="GRPO">
@@ -32,7 +32,7 @@
   <meta name="citation_author" content="Balbastre, Rubén">
   <meta name="citation_author" content="Orduña, Juan Manuel">
   <meta name="citation_author" content="Pérez, Mariano">
-  <meta name="citation_publication_date" content="2026/08/18">
+  <meta name="citation_publication_date" content="2026/09">
   <meta name="citation_arxiv_id" content="2608.17804">
   <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2608.17804">
 
@@ -77,7 +77,7 @@
         }
       }
     ],
-    "datePublished": "2026-08",
+    "datePublished": "2026-09",
     "isAccessibleForFree": true,
     "keywords": ["LLM unlearning", "GRPO", "reward specification", "RWKU", "RLVR", "benchmark reliability"]
   }
@@ -110,7 +110,7 @@
                 <span class="author-separator">/</span>
                 <a class="author-block" href="mailto:mariano.perez@uv.es">Mariano Perez</a>
               </div>
-              <p class="publication-venue">University of Valencia - August 2026</p>
+              <p class="publication-venue">University of Valencia - September 2026</p>
 
               <div class="publication-links">
                 <a href="https://arxiv.org/abs/2608.17804" target="_blank" class="button primary-action" aria-label="Paper on arXiv">
@@ -254,7 +254,7 @@
         <div class="finding-grid">
           <article class="finding">
             <span class="finding-index">01</span>
-            <h3>Reward hacking produces unintended endpoints.</h3>
+            <h3>Reward proxies can be hacked into different endpoints.</h3>
             <p>
               R0-Lex can collapse to refusal-like behavior, while refusal-sensitive rewards can be satisfied by policy boilerplate or terse target-adjacent fragments. These are concrete optimized behaviors, not just noisy scores.
             </p>
@@ -263,7 +263,7 @@
             <span class="finding-index">02</span>
             <h3>Forgetting scores can hide endpoint changes.</h3>
             <p>
-              Similar RWKU forget deltas can correspond to refusal collapse, residual leakage, classifier-aligned artifacts, or R2-Rubric broad-topic behavior under held-out evaluation.
+              RWKU forget improvements can hide very different held-out behaviors: refusal collapse, residual leakage, classifier-aligned artifacts, or R2-Rubric broad-topic answering. This is clearest when benchmark deltas look comparable, but the behavioral audit separates the endpoints.
             </p>
           </article>
           <article class="finding">
