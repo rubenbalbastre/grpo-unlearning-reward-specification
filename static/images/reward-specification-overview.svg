@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 700" role="img" aria-labelledby="title desc">
   <title id="title">GRPO reward specification study overview</title>
-  <desc id="desc">A compact diagram showing RWKU prompts, initialization, GRPO, reward specifications, completion audits, RWKU, and training dynamics.</desc>
+  <desc id="desc">A compact diagram showing RWKU prompts, initialization, GRPO reward specifications, held-out endpoint audits, RWKU benchmark scores, and policy-support training dynamics.</desc>
   <defs>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
       <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#17211f" flood-opacity="0.13"/>
@@ -27,68 +27,64 @@
     </style>
   </defs>
 
-  <rect class="bg" x="0" y="0" width="920" height="720"/>
-  <rect class="frame" x="36" y="34" width="848" height="652" rx="18"/>
+  <rect class="bg" x="0" y="0" width="1040" height="700"/>
+  <rect class="frame" x="36" y="34" width="968" height="632" rx="18"/>
 
-  <text class="title" x="74" y="90">Reward decides what GRPO learns</text>
-  <text class="subtitle" x="76" y="123">Behavior checks: held-out + terminal audits.</text>
-  <text class="subtitle" x="76" y="150">Benchmark + optimization: RWKU, reward curves, KL.</text>
+  <text class="title" x="74" y="90">Reward and support shape the endpoint</text>
+  <text class="subtitle" x="76" y="123">RWKU scores, held-out behavior, and dynamics are separate evidence.</text>
+  <text class="subtitle" x="76" y="150">SFT warm-up enables learning; the reward still decides what is reinforced.</text>
 
-  <rect class="card" x="74" y="184" width="214" height="112" rx="10"/>
-  <text class="label" x="106" y="230">RWKU</text>
-  <text class="text" x="106" y="262">forget prompts</text>
+  <rect class="card" x="74" y="184" width="250" height="112" rx="10"/>
+  <text class="label" x="108" y="230">RWKU</text>
+  <text class="text" x="108" y="262">forget prompts</text>
 
-  <path class="arrow" d="M294 240 H344"/>
-  <path class="arrowHead" d="M344 233 L356 240 L344 247 Z"/>
+  <path class="arrow" d="M332 240 H382"/>
+  <path class="arrowHead" d="M382 233 L394 240 L382 247 Z"/>
 
-  <rect class="card" x="370" y="184" width="214" height="112" rx="10"/>
-  <text class="label" x="402" y="225">Initialization</text>
-  <rect class="soft" x="402" y="242" width="70" height="34" rx="17"/>
-  <text class="tiny" x="416" y="265">cold</text>
-  <rect class="soft" x="486" y="242" width="64" height="34" rx="17"/>
-  <text class="tiny" x="500" y="265">warm</text>
+  <rect class="card" x="406" y="184" width="260" height="112" rx="10"/>
+  <text class="label" x="438" y="225">Initialization</text>
+  <rect class="soft" x="438" y="242" width="76" height="34" rx="17"/>
+  <text class="tiny" x="454" y="265">cold</text>
+  <rect class="soft" x="530" y="242" width="76" height="34" rx="17"/>
+  <text class="tiny" x="546" y="265">warm</text>
+  <text class="tiny" x="438" y="292">policy support</text>
 
-  <path class="arrow" d="M590 240 H640"/>
-  <path class="arrowHead" d="M640 233 L652 240 L640 247 Z"/>
+  <path class="arrow" d="M674 240 H712"/>
+  <path class="arrowHead" d="M712 233 L724 240 L712 247 Z"/>
 
-  <rect class="card" x="666" y="184" width="180" height="112" rx="10"/>
-  <text class="label" x="706" y="230">GRPO</text>
-  <text class="text" x="706" y="262">LoRA update</text>
+  <rect class="card" x="736" y="184" width="230" height="112" rx="10"/>
+  <text class="label" x="784" y="230">GRPO</text>
+  <text class="text" x="784" y="262">LoRA update</text>
 
-  <path class="arrow" d="M756 302 V334"/>
-  <path class="arrowHead" d="M749 334 L756 346 L763 334 Z"/>
+  <path class="arrow" d="M851 302 V330"/>
+  <path class="arrowHead" d="M844 330 L851 342 L858 330 Z"/>
 
-  <rect class="card" x="190" y="356" width="540" height="116" rx="10"/>
-  <text class="label" x="226" y="399">Reward specification</text>
-  <rect class="amber" x="228" y="420" width="68" height="38" rx="19"/>
-  <text class="tagText" x="250" y="445">R0</text>
-  <rect class="teal" x="316" y="420" width="68" height="38" rx="19"/>
-  <text class="tagText" x="338" y="445">R1</text>
-  <rect class="violet" x="404" y="420" width="68" height="38" rx="19"/>
-  <text class="tagText" x="426" y="445">R2</text>
-  <rect class="coral" x="492" y="420" width="68" height="38" rx="19"/>
-  <text class="tagText" x="514" y="445">R4</text>
-  <text class="text" x="588" y="444">selects the endpoint</text>
+  <rect class="card" x="170" y="352" width="700" height="118" rx="10"/>
+  <text class="label" x="212" y="394">Reward specification</text>
+  <rect class="amber" x="214" y="416" width="74" height="38" rx="19"/>
+  <text class="tagText" x="238" y="441">R0</text>
+  <rect class="teal" x="312" y="416" width="74" height="38" rx="19"/>
+  <text class="tagText" x="336" y="441">R1</text>
+  <rect class="violet" x="410" y="416" width="74" height="38" rx="19"/>
+  <text class="tagText" x="434" y="441">R2</text>
+  <rect class="coral" x="508" y="416" width="74" height="38" rx="19"/>
+  <text class="tagText" x="532" y="441">R4</text>
+  <text class="text" x="628" y="440">selects the endpoint</text>
 
-  <text class="tiny" x="90" y="532">Evaluation lenses</text>
+  <text class="tiny" x="90" y="518">Evaluation lenses</text>
 
-  <rect class="card" x="74" y="548" width="182" height="92" rx="10"/>
-  <text class="smallLabel" x="94" y="584">Held-out audit</text>
-  <text class="bottomText" x="94" y="612">leak / refuse</text>
-  <text class="bottomText" x="94" y="636">deterministic</text>
+  <rect class="card" x="74" y="536" width="280" height="96" rx="10"/>
+  <text class="smallLabel" x="96" y="574">Held-out endpoints</text>
+  <text class="bottomText" x="96" y="604">broad helpfulness</text>
+  <text class="bottomText" x="96" y="626">leakage / avoidance</text>
 
-  <rect class="card" x="276" y="548" width="182" height="92" rx="10"/>
-  <text class="smallLabel" x="296" y="584">Terminal audit</text>
-  <text class="bottomText" x="296" y="612">broad helpful</text>
-  <text class="bottomText" x="296" y="636">sampled rollouts</text>
+  <rect class="card" x="380" y="536" width="280" height="96" rx="10"/>
+  <text class="smallLabel" x="402" y="574">RWKU benchmark</text>
+  <text class="bottomText" x="402" y="604">forget deltas</text>
+  <text class="bottomText" x="402" y="626">utility trade-offs</text>
 
-  <rect class="card" x="478" y="548" width="182" height="92" rx="10"/>
-  <text class="smallLabel" x="498" y="584">RWKU benchmark</text>
-  <text class="bottomText" x="498" y="612">forget</text>
-  <text class="bottomText" x="498" y="636">utility</text>
-
-  <rect class="card" x="680" y="548" width="166" height="92" rx="10"/>
-  <text class="smallLabel" x="700" y="584">Dynamics</text>
-  <text class="bottomText" x="700" y="612">reward</text>
-  <text class="bottomText" x="700" y="636">KL</text>
+  <rect class="card" x="686" y="536" width="280" height="96" rx="10"/>
+  <text class="smallLabel" x="708" y="574">Training dynamics</text>
+  <text class="bottomText" x="708" y="604">active groups</text>
+  <text class="bottomText" x="708" y="626">reward / KL</text>
 </svg>
