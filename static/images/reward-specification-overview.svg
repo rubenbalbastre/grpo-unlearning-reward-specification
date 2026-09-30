@@ -43,11 +43,11 @@
 
   <rect class="card" x="406" y="184" width="260" height="112" rx="10"/>
   <text class="label" x="438" y="225">Initialization</text>
-  <rect class="soft" x="438" y="242" width="76" height="34" rx="17"/>
-  <text class="tiny" x="454" y="265">cold</text>
-  <rect class="soft" x="530" y="242" width="76" height="34" rx="17"/>
-  <text class="tiny" x="546" y="265">warm</text>
-  <text class="tiny" x="438" y="292">policy support</text>
+  <rect class="soft" x="438" y="240" width="76" height="32" rx="16"/>
+  <text class="tiny" x="454" y="262">cold</text>
+  <rect class="soft" x="530" y="240" width="76" height="32" rx="16"/>
+  <text class="tiny" x="546" y="262">warm</text>
+  <text class="bottomText" x="438" y="288">policy support</text>
 
   <path class="arrow" d="M674 240 H712"/>
   <path class="arrowHead" d="M712 233 L724 240 L712 247 Z"/>
