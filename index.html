@@ -486,24 +486,31 @@
           <strong>Key takeaway.</strong> R2-Rubric is the clearest held-out broad-topic endpoint, while the diagnostic rows show how low leakage can also arise from scale-dependent R0 behavior, refusal collapse, or refusal-classifier shortcuts.
         </p>
         <div class="utility-snapshot">
-          <h3>Selected 0.5B and 3B Warm-start RWKU Rows</h3>
+          <h3>Selected RWKU and Held-out Endpoint Rows</h3>
           <p>
-            This compact RWKU slice compares a small and larger warm-start setting: all four rewards reduce forget overlap, but the benchmark columns do not identify the held-out behavioral endpoint.
+            This compact slice compares RWKU benchmark scores with matching held-out endpoints for 0.5B and 3B warm-start runs.
           </p>
           <p class="reading-cue">
-            <strong>What to look for.</strong> Compare forget deltas against factuality, fluency, and the held-out endpoint table above.
+            <strong>What to look for.</strong> The RWKU columns summarize benchmark forgetting and utility, while the held-out columns show whether the endpoint is broad answering, leakage, or refusal/avoidance.
           </p>
           <div class="table-container utility-table-wrap">
             <table class="table is-fullwidth utility-table">
               <thead>
                 <tr>
-                  <th>Model</th>
-                  <th>Reward</th>
+                  <th rowspan="2">Model</th>
+                  <th rowspan="2">Reward</th>
+                  <th colspan="4">RWKU benchmark</th>
+                  <th colspan="3">Held-out endpoint</th>
+                  <th rowspan="2">N</th>
+                </tr>
+                <tr>
                   <th class="focus-col">&Delta; Forget &darr;</th>
                   <th>&Delta; Neighbor &uarr;</th>
                   <th>Factuality &uarr;</th>
                   <th class="focus-col">Fluency &uarr;</th>
-                  <th>N</th>
+                  <th>Broad helpful &uarr;</th>
+                  <th>Sem. leak &darr;</th>
+                  <th>Ref./avoid.</th>
                 </tr>
               </thead>
               <tbody>
@@ -514,6 +521,9 @@
                   <td>-0.075 [-0.091, 0.002]</td>
                   <td>0.227 [0.194, 0.250]</td>
                   <td>5.787 [5.450, 6.125]</td>
+                  <td>0.058 [0.000, 0.442]</td>
+                  <td>0.025 [0.000, 0.217]</td>
+                  <td>0.983 [0.504, 1.000]</td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -523,6 +533,9 @@
                   <td>-0.024 [-0.070, 0.073]</td>
                   <td>0.201 [0.191, 0.228]</td>
                   <td class="good-delta">6.677 [6.462, 6.907]</td>
+                  <td>0.908 [0.842, 0.963]</td>
+                  <td>0.575 [0.408, 0.783]</td>
+                  <td>0.200 [0.079, 0.267]</td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -532,6 +545,9 @@
                   <td>-0.055 [-0.081, -0.039]</td>
                   <td>0.176 [0.142, 0.202]</td>
                   <td class="good-delta">7.054 [6.802, 7.174]</td>
+                  <td class="good-delta">0.983 [0.950, 1.000]</td>
+                  <td class="good-delta">0.008 [0.000, 0.029]</td>
+                  <td>0.708 [0.633, 0.771]</td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -541,6 +557,9 @@
                   <td>-0.041 [-0.085, -0.013]</td>
                   <td>0.206 [0.189, 0.231]</td>
                   <td class="bad-delta">3.718 [3.524, 3.844]</td>
+                  <td>0.000 [0.000, 0.000]</td>
+                  <td>0.000 [0.000, 0.000]</td>
+                  <td>1.000 [1.000, 1.000]</td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -550,6 +569,9 @@
                   <td>-0.073 [-0.139, -0.066]</td>
                   <td>0.193 [0.178, 0.208]</td>
                   <td>6.922 [6.812, 7.059]</td>
+                  <td>0.600 [0.196, 0.846]</td>
+                  <td>0.325 [0.054, 0.388]</td>
+                  <td>0.733 [0.517, 0.883]</td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -559,6 +581,9 @@
                   <td>-0.057 [-0.100, -0.041]</td>
                   <td>0.153 [0.131, 0.177]</td>
                   <td class="good-delta">7.050 [6.950, 7.261]</td>
+                  <td>0.950 [0.696, 0.996]</td>
+                  <td>0.450 [0.183, 0.717]</td>
+                  <td>0.325 [0.167, 0.588]</td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -568,6 +593,9 @@
                   <td>-0.100 [-0.165, -0.033]</td>
                   <td>0.128 [0.124, 0.138]</td>
                   <td class="good-delta">7.154 [7.082, 7.248]</td>
+                  <td class="good-delta">0.983 [0.967, 0.996]</td>
+                  <td class="good-delta">0.017 [0.000, 0.046]</td>
+                  <td>0.825 [0.762, 0.954]</td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -577,6 +605,9 @@
                   <td>-0.129 [-0.197, -0.049]</td>
                   <td>0.238 [0.195, 0.273]</td>
                   <td class="bad-delta">6.168 [6.050, 6.357]</td>
+                  <td>0.067 [0.004, 0.217]</td>
+                  <td>0.000 [0.000, 0.017]</td>
+                  <td>1.000 [1.000, 1.000]</td>
                   <td>10</td>
                 </tr>
               </tbody>

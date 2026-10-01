@@ -543,7 +543,7 @@ a:hover {
 
 .utility-table {
   font-size: 0.86rem;
-  min-width: 760px;
+  min-width: 1320px;
 }
 
 .utility-table td,
@@ -565,6 +565,12 @@ a:hover {
 .utility-table td:nth-child(6),
 .utility-table th:nth-child(6) {
   background: #f6faf8;
+}
+
+.utility-table thead tr:first-child th[colspan] {
+  background: #eef4f1;
+  color: var(--teal-dark);
+  text-align: center !important;
 }
 
 .good-delta {
