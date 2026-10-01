@@ -238,7 +238,7 @@ a:hover {
 .hero-figure img {
   display: block;
   width: 100%;
-  min-height: 380px;
+  height: auto;
   object-fit: contain;
   background: var(--paper);
   border: 1px solid var(--border);
@@ -381,7 +381,6 @@ a:hover {
 
 .reward-table-wrap,
 .audit-table-wrap,
-.terminal-table-wrap,
 .utility-table-wrap {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -483,7 +482,7 @@ a:hover {
 
 .audit-table {
   font-size: 0.84rem;
-  min-width: 1180px;
+  min-width: 1480px;
 }
 
 .audit-table td,
@@ -522,11 +521,6 @@ a:hover {
   margin-top: 3rem;
 }
 
-.terminal-snapshot {
-  margin-top: 3rem;
-}
-
-.terminal-snapshot h3,
 .utility-snapshot h3 {
   margin: 0 0 0.45rem;
   color: var(--ink);
@@ -534,7 +528,6 @@ a:hover {
   font-weight: 800;
 }
 
-.terminal-snapshot p,
 .utility-snapshot p {
   width: 100%;
   max-width: none;
@@ -543,44 +536,14 @@ a:hover {
   font-size: 0.98rem;
 }
 
-.terminal-snapshot .reading-cue,
 .utility-snapshot .reading-cue,
-.terminal-snapshot .takeaway,
 .utility-snapshot .takeaway {
   color: var(--ink);
 }
 
-.terminal-table {
-  font-size: 0.86rem;
-  min-width: 1120px;
-}
-
-.terminal-table td,
-.terminal-table th {
-  text-align: right !important;
-  white-space: nowrap;
-  padding: 0.62rem 0.68rem;
-}
-
-.terminal-table td:first-child,
-.terminal-table th:first-child,
-.terminal-table td:nth-child(2),
-.terminal-table th:nth-child(2),
-.terminal-table td:nth-child(3),
-.terminal-table th:nth-child(3) {
-  text-align: left !important;
-}
-
-.terminal-table td:nth-child(4),
-.terminal-table th:nth-child(4),
-.terminal-table td:nth-child(7),
-.terminal-table th:nth-child(7) {
-  background: #f6faf8;
-}
-
 .utility-table {
   font-size: 0.86rem;
-  min-width: 860px;
+  min-width: 1320px;
 }
 
 .utility-table td,
@@ -593,17 +556,21 @@ a:hover {
 .utility-table td:first-child,
 .utility-table th:first-child,
 .utility-table td:nth-child(2),
-.utility-table th:nth-child(2),
-.utility-table td:nth-child(3),
-.utility-table th:nth-child(3) {
+.utility-table th:nth-child(2) {
   text-align: left !important;
 }
 
-.utility-table td:nth-child(4),
-.utility-table th:nth-child(4),
-.utility-table td:nth-child(8),
-.utility-table th:nth-child(8) {
+.utility-table td:nth-child(3),
+.utility-table th:nth-child(3),
+.utility-table td:nth-child(6),
+.utility-table th:nth-child(6) {
   background: #f6faf8;
+}
+
+.utility-table thead tr:first-child th[colspan] {
+  background: #eef4f1;
+  color: var(--teal-dark);
+  text-align: center !important;
 }
 
 .good-delta {
@@ -774,7 +741,7 @@ a:focus {
   }
 
   .hero-figure img {
-    min-height: 320px;
+    height: auto;
   }
 }
 
