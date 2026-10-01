@@ -486,9 +486,9 @@
           <strong>Key takeaway.</strong> R2-Rubric is the clearest held-out broad-topic endpoint, while the diagnostic rows show how low leakage can also arise from scale-dependent R0 behavior, refusal collapse, or refusal-classifier shortcuts.
         </p>
         <div class="utility-snapshot">
-          <h3>Selected 3B Warm-start RWKU Rows</h3>
+          <h3>Selected 0.5B and 3B Warm-start RWKU Rows</h3>
           <p>
-            This compact RWKU slice mirrors the paper table: all four rewards reduce forget overlap, but the benchmark columns do not identify the held-out behavioral endpoint.
+            This compact RWKU slice compares a small and larger warm-start setting: all four rewards reduce forget overlap, but the benchmark columns do not identify the held-out behavioral endpoint.
           </p>
           <p class="reading-cue">
             <strong>What to look for.</strong> Compare forget deltas against factuality, fluency, and the held-out endpoint table above.
@@ -497,6 +497,7 @@
             <table class="table is-fullwidth utility-table">
               <thead>
                 <tr>
+                  <th>Model</th>
                   <th>Reward</th>
                   <th class="focus-col">&Delta; Forget &darr;</th>
                   <th>&Delta; Neighbor &uarr;</th>
@@ -507,6 +508,43 @@
               </thead>
               <tbody>
                 <tr>
+                  <td>0.5B</td>
+                  <td>R0-Lex</td>
+                  <td class="focus-col">-0.107 [-0.148, -0.051]</td>
+                  <td>-0.075 [-0.091, 0.002]</td>
+                  <td>0.227 [0.194, 0.250]</td>
+                  <td>5.787 [5.450, 6.125]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>R1-AntiRefusal</td>
+                  <td class="focus-col">-0.085 [-0.147, -0.051]</td>
+                  <td>-0.024 [-0.070, 0.073]</td>
+                  <td>0.201 [0.191, 0.228]</td>
+                  <td class="good-delta">6.677 [6.462, 6.907]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>R2-Rubric</td>
+                  <td class="focus-col">-0.082 [-0.143, -0.022]</td>
+                  <td>-0.055 [-0.081, -0.039]</td>
+                  <td>0.176 [0.142, 0.202]</td>
+                  <td class="good-delta">7.054 [6.802, 7.174]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>0.5B</td>
+                  <td>R4-Refusal</td>
+                  <td class="focus-col">-0.110 [-0.137, -0.087]</td>
+                  <td>-0.041 [-0.085, -0.013]</td>
+                  <td>0.206 [0.189, 0.231]</td>
+                  <td class="bad-delta">3.718 [3.524, 3.844]</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>3B</td>
                   <td>R0-Lex</td>
                   <td class="focus-col">-0.316 [-0.376, -0.173]</td>
                   <td>-0.073 [-0.139, -0.066]</td>
@@ -515,6 +553,7 @@
                   <td>10</td>
                 </tr>
                 <tr>
+                  <td>3B</td>
                   <td>R1-AntiRefusal</td>
                   <td class="focus-col">-0.217 [-0.270, -0.191]</td>
                   <td>-0.057 [-0.100, -0.041]</td>
@@ -523,6 +562,7 @@
                   <td>10</td>
                 </tr>
                 <tr>
+                  <td>3B</td>
                   <td>R2-Rubric</td>
                   <td class="focus-col">-0.218 [-0.341, -0.178]</td>
                   <td>-0.100 [-0.165, -0.033]</td>
@@ -531,6 +571,7 @@
                   <td>10</td>
                 </tr>
                 <tr>
+                  <td>3B</td>
                   <td>R4-Refusal</td>
                   <td class="focus-col">-0.261 [-0.336, -0.153]</td>
                   <td>-0.129 [-0.197, -0.049]</td>

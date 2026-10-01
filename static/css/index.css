@@ -554,14 +554,16 @@ a:hover {
 }
 
 .utility-table td:first-child,
-.utility-table th:first-child {
+.utility-table th:first-child,
+.utility-table td:nth-child(2),
+.utility-table th:nth-child(2) {
   text-align: left !important;
 }
 
-.utility-table td:nth-child(2),
-.utility-table th:nth-child(2),
-.utility-table td:nth-child(5),
-.utility-table th:nth-child(5) {
+.utility-table td:nth-child(3),
+.utility-table th:nth-child(3),
+.utility-table td:nth-child(6),
+.utility-table th:nth-child(6) {
   background: #f6faf8;
 }
 
