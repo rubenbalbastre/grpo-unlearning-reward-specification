@@ -482,7 +482,7 @@ a:hover {
 
 .audit-table {
   font-size: 0.84rem;
-  min-width: 900px;
+  min-width: 1480px;
 }
 
 .audit-table td,
@@ -495,7 +495,9 @@ a:hover {
 .audit-table td:first-child,
 .audit-table th:first-child,
 .audit-table td:nth-child(2),
-.audit-table th:nth-child(2) {
+.audit-table th:nth-child(2),
+.audit-table td:nth-child(3),
+.audit-table th:nth-child(3) {
   text-align: left !important;
 }
 

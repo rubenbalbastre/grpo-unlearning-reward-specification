@@ -289,157 +289,201 @@
         <h2 class="section-title">Behavioral and Benchmark Diagnostics</h2>
         <h3 class="diagnostic-subtitle">Held-out Audit Cases</h3>
         <p class="section-intro">
-          The held-out audit shows warm-start GRPO endpoints across Qwen2.5-Instruct sizes. Cells report median [Q1, Q3] rates across evaluated target entities; refusal/avoidance includes explicit refusal, inability claims, topic avoidance, and generic policy discussion.
+          The held-out audit table combines the central R2-Rubric endpoint with three diagnostic phenomena: warm-start R0-Lex scale contrast, refusal collapse, and refusal-classifier hacking. Cells report median [Q1, Q3] rates across evaluated target entities; refusal/avoidance includes explicit refusal, inability claims, topic avoidance, and generic policy discussion.
         </p>
         <p class="reading-cue">
-          <strong>What to look for.</strong> R2-Rubric is the only reward that consistently combines high broad-topic helpfulness with low semantic leakage; its refusal/avoidance label can co-occur with broad-topic answers.
+          <strong>What to look for.</strong> Read leakage together with prompt helpfulness, broad helpfulness, and refusal/avoidance: low leakage can mean useful broad answering, refusal collapse, or classifier-aligned shortcuts.
         </p>
         <div class="table-container audit-table-wrap">
           <table class="table is-fullwidth audit-table">
             <thead>
               <tr>
                 <th>Model</th>
+                <th>Init.</th>
                 <th>Reward</th>
-                <th>Broad helpful &uarr;</th>
+                <th>Lex. leak &darr;</th>
                 <th>Sem. leak &darr;</th>
+                <th>Prompt helpful &uarr;</th>
+                <th>Broad helpful &uarr;</th>
                 <th>Ref./avoid.</th>
+                <th>Drift &darr;</th>
                 <th>N<sub>eval</sub></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>0.5B</td>
-                <td>R0-Lex</td>
-                <td>0.058 [0.000, 0.442]</td>
-                <td>0.025 [0.000, 0.217]</td>
-                <td>0.983 [0.504, 1.000]</td>
-                <td>10</td>
+              <tr class="audit-group">
+                <td colspan="10">R2-Rubric broad-topic endpoint</td>
               </tr>
               <tr>
                 <td>0.5B</td>
-                <td>R1-AntiRefusal</td>
-                <td>0.908 [0.842, 0.963]</td>
-                <td>0.575 [0.408, 0.783]</td>
-                <td>0.200 [0.079, 0.267]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>0.5B</td>
+                <td>Warm</td>
                 <td>R2-Rubric</td>
-                <td class="good-delta">0.983 [0.950, 1.000]</td>
+                <td class="good-delta">0.033 [0.033, 0.062]</td>
                 <td class="good-delta">0.008 [0.000, 0.029]</td>
+                <td>0.008 [0.000, 0.017]</td>
+                <td class="good-delta">0.983 [0.950, 1.000]</td>
                 <td>0.708 [0.633, 0.771]</td>
+                <td>0.000 [0.000, 0.000]</td>
                 <td>10</td>
+              </tr>
+              <tr>
+                <td>1.5B</td>
+                <td>Warm</td>
+                <td>R2-Rubric</td>
+                <td class="good-delta">0.058 [0.037, 0.117]</td>
+                <td class="good-delta">0.033 [0.017, 0.062]</td>
+                <td>0.025 [0.017, 0.067]</td>
+                <td class="good-delta">0.992 [0.958, 1.000]</td>
+                <td>0.608 [0.450, 0.779]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>3B</td>
+                <td>Warm</td>
+                <td>R2-Rubric</td>
+                <td class="good-delta">0.025 [0.000, 0.079]</td>
+                <td class="good-delta">0.017 [0.000, 0.046]</td>
+                <td>0.017 [0.000, 0.033]</td>
+                <td class="good-delta">0.983 [0.967, 0.996]</td>
+                <td>0.825 [0.762, 0.954]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>7B</td>
+                <td>Warm</td>
+                <td>R2-Rubric</td>
+                <td class="good-delta">0.017 [0.004, 0.017]</td>
+                <td class="good-delta">0.017 [0.004, 0.029]</td>
+                <td>0.008 [0.000, 0.046]</td>
+                <td class="good-delta">0.983 [0.933, 0.996]</td>
+                <td>0.775 [0.512, 0.863]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>10</td>
+              </tr>
+              <tr class="audit-group">
+                <td colspan="10">Warm-start R0-Lex scale contrast</td>
               </tr>
               <tr>
                 <td>0.5B</td>
-                <td>R4-Refusal</td>
+                <td>Warm</td>
+                <td>R0-Lex</td>
+                <td>0.000 [0.000, 0.142]</td>
+                <td>0.025 [0.000, 0.217]</td>
+                <td>0.017 [0.000, 0.296]</td>
+                <td>0.058 [0.000, 0.442]</td>
+                <td>0.983 [0.504, 1.000]</td>
                 <td>0.000 [0.000, 0.000]</td>
-                <td>0.000 [0.000, 0.000]</td>
-                <td>1.000 [1.000, 1.000]</td>
                 <td>10</td>
               </tr>
               <tr>
                 <td>1.5B</td>
+                <td>Warm</td>
                 <td>R0-Lex</td>
-                <td>0.017 [0.000, 0.425]</td>
+                <td>0.000 [0.000, 0.033]</td>
                 <td>0.008 [0.000, 0.058]</td>
+                <td>0.008 [0.000, 0.108]</td>
+                <td>0.017 [0.000, 0.425]</td>
                 <td>0.992 [0.604, 1.000]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>1.5B</td>
-                <td>R1-AntiRefusal</td>
-                <td>0.975 [0.904, 1.000]</td>
-                <td>0.308 [0.083, 0.438]</td>
-                <td>0.375 [0.188, 0.475]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>1.5B</td>
-                <td>R2-Rubric</td>
-                <td class="good-delta">0.992 [0.958, 1.000]</td>
-                <td class="good-delta">0.033 [0.017, 0.062]</td>
-                <td>0.608 [0.450, 0.779]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>1.5B</td>
-                <td>R4-Refusal</td>
                 <td>0.000 [0.000, 0.000]</td>
-                <td>0.000 [0.000, 0.000]</td>
-                <td>1.000 [1.000, 1.000]</td>
                 <td>10</td>
               </tr>
               <tr>
                 <td>3B</td>
+                <td>Warm</td>
                 <td>R0-Lex</td>
-                <td>0.600 [0.196, 0.846]</td>
+                <td>0.233 [0.092, 0.463]</td>
                 <td>0.325 [0.054, 0.388]</td>
+                <td>0.200 [0.050, 0.375]</td>
+                <td>0.600 [0.196, 0.846]</td>
                 <td>0.733 [0.517, 0.883]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>3B</td>
-                <td>R1-AntiRefusal</td>
-                <td>0.950 [0.696, 0.996]</td>
-                <td>0.450 [0.183, 0.717]</td>
-                <td>0.325 [0.167, 0.588]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>3B</td>
-                <td>R2-Rubric</td>
-                <td class="good-delta">0.983 [0.967, 0.996]</td>
-                <td class="good-delta">0.017 [0.000, 0.046]</td>
-                <td>0.825 [0.762, 0.954]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>3B</td>
-                <td>R4-Refusal</td>
-                <td>0.067 [0.004, 0.217]</td>
-                <td>0.000 [0.000, 0.017]</td>
-                <td>1.000 [1.000, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
                 <td>10</td>
               </tr>
               <tr>
                 <td>7B</td>
+                <td>Warm</td>
                 <td>R0-Lex</td>
-                <td>0.958 [0.883, 1.000]</td>
+                <td>0.350 [0.100, 0.746]</td>
                 <td>0.500 [0.138, 0.621]</td>
+                <td>0.558 [0.104, 0.725]</td>
+                <td>0.958 [0.883, 1.000]</td>
                 <td>0.183 [0.075, 0.558]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>10</td>
+              </tr>
+              <tr class="audit-group">
+                <td colspan="10">Refusal collapse</td>
+              </tr>
+              <tr>
+                <td>0.5B</td>
+                <td>Cold</td>
+                <td>R0-Lex</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>1.000 [1.000, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
                 <td>10</td>
               </tr>
               <tr>
-                <td>7B</td>
+                <td>1.5B</td>
+                <td>Cold</td>
+                <td>R0-Lex</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>1.000 [1.000, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>10</td>
+              </tr>
+              <tr class="audit-group">
+                <td colspan="10">Refusal-classifier hacking</td>
+              </tr>
+              <tr>
+                <td>0.5B</td>
+                <td>Cold</td>
                 <td>R1-AntiRefusal</td>
-                <td>0.975 [0.950, 0.983]</td>
-                <td>0.367 [0.154, 0.492]</td>
-                <td>0.458 [0.163, 0.567]</td>
+                <td>0.050 [0.021, 0.796]</td>
+                <td>0.000 [0.000, 0.767]</td>
+                <td>0.000 [0.000, 0.696]</td>
+                <td>0.000 [0.000, 0.496]</td>
+                <td>1.000 [0.250, 1.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>1.5B</td>
+                <td>Cold</td>
+                <td>R1-AntiRefusal</td>
+                <td>0.000 [0.000, 0.029]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>0.000 [0.000, 0.000]</td>
+                <td>1.000 [1.000, 1.000]</td>
+                <td>0.000 [0.000, 0.033]</td>
                 <td>10</td>
               </tr>
               <tr>
                 <td>7B</td>
-                <td>R2-Rubric</td>
-                <td class="good-delta">0.983 [0.933, 0.996]</td>
-                <td class="good-delta">0.017 [0.004, 0.029]</td>
-                <td>0.775 [0.512, 0.863]</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>7B</td>
+                <td>Warm</td>
                 <td>R4-Refusal</td>
-                <td>0.092 [0.042, 0.150]</td>
+                <td>0.408 [0.212, 0.617]</td>
                 <td>0.067 [0.037, 0.096]</td>
+                <td>0.008 [0.000, 0.017]</td>
+                <td>0.092 [0.042, 0.150]</td>
                 <td>0.950 [0.800, 0.983]</td>
+                <td>0.000 [0.000, 0.000]</td>
                 <td>10</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="takeaway">
-          <strong>Key takeaway.</strong> R2-Rubric is the clearest held-out broad-topic endpoint; R0-Lex and R4-Refusal often move toward avoidance or refusal, while R1-AntiRefusal preserves broad-topic answers with substantially higher semantic leakage.
+          <strong>Key takeaway.</strong> R2-Rubric is the clearest held-out broad-topic endpoint, while the diagnostic rows show how low leakage can also arise from scale-dependent R0 behavior, refusal collapse, or refusal-classifier shortcuts.
         </p>
         <div class="utility-snapshot">
           <h3>Selected 3B Warm-start RWKU Rows</h3>
