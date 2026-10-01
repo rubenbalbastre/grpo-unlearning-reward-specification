@@ -501,9 +501,17 @@ a:hover {
   text-align: left !important;
 }
 
+.audit-table tbody td:nth-child(4),
+.audit-table tbody td:nth-child(10),
+.audit-table thead th:nth-child(4),
+.audit-table thead th:nth-child(10) {
+  box-shadow: inset 2px 0 0 #7b928c;
+}
+
 .audit-group td {
   color: var(--teal-dark);
   background: #eef4f1;
+  box-shadow: none !important;
   font-size: 0.82rem;
   font-weight: 850;
   letter-spacing: 0.04em;
@@ -567,10 +575,29 @@ a:hover {
   background: #f6faf8;
 }
 
+.utility-table tbody td:nth-child(3),
+.utility-table tbody td:nth-child(7),
+.utility-table tbody td:nth-child(10) {
+  box-shadow: inset 2px 0 0 #7b928c;
+}
+
+.utility-table thead tr:first-child th:nth-child(3),
+.utility-table thead tr:first-child th:nth-child(4),
+.utility-table thead tr:first-child th:nth-child(5),
+.utility-table thead tr:nth-child(2) th:first-child,
+.utility-table thead tr:nth-child(2) th:nth-child(5) {
+  box-shadow: inset 2px 0 0 #7b928c;
+}
+
 .utility-table thead tr:first-child th[colspan] {
   background: #eef4f1;
   color: var(--teal-dark);
   text-align: center !important;
+}
+
+.utility-table thead tr:first-child th:nth-child(4) {
+  background: #eef4f1;
+  color: var(--teal-dark);
 }
 
 .good-delta {
